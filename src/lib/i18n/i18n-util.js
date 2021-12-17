@@ -20,11 +20,13 @@ import { initFormatters } from './formatters.js';
 export const baseLocale = 'en';
 
 /** @type { Locales[] } */
-export const locales = ['en'];
+export const locales = ['en', 'fr', 'se'];
 
 /** @type { Record<Locales, () => Promise<any>> } */
 const localeTranslationLoaders = {
-	en: () => import('./en/index.js')
+	en: () => import('./en/index.js'),
+	fr: () => import('./fr/index.js'),
+	se: () => import('./se/index.js')
 };
 
 /**

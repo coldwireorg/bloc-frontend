@@ -5,7 +5,7 @@ import type { BaseTranslation as BaseTranslationType, LocalizedString } from 'ty
 export type BaseTranslation = BaseTranslationType;
 export type BaseLocale = 'en';
 
-export type Locales = 'en';
+export type Locales = 'en' | 'fr' | 'se';
 
 export type Translation = {
 	/**
