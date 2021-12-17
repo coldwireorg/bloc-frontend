@@ -1,0 +1,41 @@
+{
+  "searchBar": "sök...",
+  "uploadButton": "ladda upp",
+
+  "authUsernameField": "användarnamn",
+  "authPasswordField": "lösenord",
+  "authLoginButton": "logga in",
+  "authRegisterButton": "registrera",
+  "authNoAccount": "Har du inget konto?",
+  "authCreateOne": "Skapa ett konto",
+  "authHaveAccount": "Har redan ett konto?",
+  "authLogin": "Logga in",
+
+  "navLinksFiles": "Mina Filer",
+  "navLinksFavorites": "Favoriter",
+  "navLinksShared": "Delad",
+  "navDonateMessage": "Hjälp oss att upprätthålla våra tjänster!",
+  "navDonateAbout": "Hur vi spenderar pengarna",
+  "navDonateButton": "Donera",
+
+  "tableName": "Namn",
+  "tableSize": "Storlek",
+  "tableLast": "Senaste ändring",
+  "tableShare": "Delad med",
+
+  "ctxmRename": "Byta namn",
+  "ctxmStar": "Lägg till i favoriter",
+  "ctxmUnstar": "Ta bort från favoriter",
+
+  "ctxmMove": "Flytta till",
+  "ctxmMoveTitle": "Flytta filen till",
+
+  "ctxmShareTitle": "Dela med",
+  "ctxmShare": "Dela",
+  "ctxmShareEveryone": "Alla",
+  "ctxmShareInvited": "Endast inbjudna",
+  "ctxmShareLink": "Kopiera länk",
+
+  "ctxmDownload": "Ladda ner",
+  "ctxmDelete": "Radera"
+}

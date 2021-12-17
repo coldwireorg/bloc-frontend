@@ -1,0 +1,28 @@
+<script>
+  export let placeholder
+  export let value
+  export let type = 'text'
+
+  const handleInputType = (e) => {
+    e.target.type = type;
+  }
+</script>
+
+<style>
+  .input {
+    height: 32px;
+    width: auto;
+
+    background-color: var(--complementary-gray-1);
+    border: 1px solid var(--complementary-white-25);
+    border-radius: 8px;
+    
+    font-size: 12px;
+
+    padding: 0 15px 0 15px;
+
+    color: var(--color-white);
+  }
+</style>
+
+<input class="input" bind:value={value} on:input={handleInputType} {placeholder} />

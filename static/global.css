@@ -1,0 +1,66 @@
+/* montserrat-regular - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/montserrat-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('/fonts/montserrat-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/montserrat-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/montserrat-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/montserrat-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/montserrat-v18-latin-regular.svg#Montserrat') format('svg'); /* Legacy iOS */
+}
+
+/* montserrat-600 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/montserrat-v18-latin-600.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('/fonts/montserrat-v18-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/montserrat-v18-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/montserrat-v18-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/montserrat-v18-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/montserrat-v18-latin-600.svg#Montserrat') format('svg'); /* Legacy iOS */
+}
+
+:root {
+  --primary-green: #009639;
+  --primary-green-25: rgba(0, 143, 100, 0.25);
+  --primary-magenta: CC317C;
+  --primary-blue: #0061FF;
+
+  --secondary-brown: #807773;
+  --secondary-organge: #D9730D;
+  --secondary-yellow: #DFAB01;
+  --secondary-green: #0F7B6C;
+  --secondary-blue: #0B6E99;
+  --secondary-violet: #6940A5;
+  --secondary-magenta: #AD1A72;
+  --secondary-red: #E03E3E;
+  --secondary-gray: #9B9A97;
+
+  --complementary-gray-1: #0D1117;
+  --complementary-gray-2: #161B22;
+  --complementary-gray-3: #30363D;
+  --complementary-white-5: rgba(240, 246, 252, 0.05);
+  --complementary-white-25: rgba(240, 246, 252, 0.25);
+  --complementary-white-50: rgba(240, 246, 252, 0.5);
+  --complementary-white: #F0F6FC;
+}
+
+body {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+
+  background-color: var(--complementary-gray-2);
+  
+  font-family: Montserrat;
+  font-weight: 600;
+  color: #F0F6FC;
+
+  margin: 0;
+}
