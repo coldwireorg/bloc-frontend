@@ -20,7 +20,7 @@ const en = {
 
 	APP_NAV_LINK_FILES: 'Mina Filer',
 	APP_NAV_LINK_FAVORITES: 'Favoriter',
-	APP_NAV_LINK_SHARED: 'Delad',
+	APP_NAV_LINK_SHARED: 'Delat med mig',
 	APP_NAV_TEXT_DONATE: 'Hjälp oss att upprätthålla våra tjänster!',
 	APP_NAV_TEXT_DONATE_HOW: 'Hur vi spenderar pengarna',
 	APP_NAV_BUTTON_DONATE: 'Donera',

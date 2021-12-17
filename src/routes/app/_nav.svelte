@@ -1,4 +1,6 @@
 <script>
+	import LL from '$lib/i18n/i18n-svelte';
+
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
   import { session } from '$app/stores';
@@ -31,13 +33,13 @@
 		<div class="links">
 			<div class="files">
 				<a href="/app/files/" class:active={$page.path === '/app/files'}
-					><IconFolder color="#F0F6FC40" width="18px" height="18px" /> My Files</a
+					><IconFolder color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_FILES()}</a
 				>
 				<a href="/app/files/favorites/" class:active={$page.path === '/app/favorites'}
-					><IconStar color="#F0F6FC40" width="18px" height="18px" /> Favorites</a
+					><IconStar color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_FAVORITES()}</a
 				>
 				<a href="/app/files/shared/" class:active={$page.path === '/app/shared'}
-					><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> Shared with me</a
+					><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_SHARED()}</a
 				>
 			</div>
 			<div class="more">
@@ -59,13 +61,13 @@
 					</div>
 				</div>
 				<div class="help">
-					<span>Help us to keep our services alive!</span>
+					<span>{$LL.APP_NAV_TEXT_DONATE()}</span>
 					<div class="donate">
 						<a class="donate-btn" href="https://coldwire.org/donate" target="_blank"
-							>Donate <IconHeart width="16px" height="16px" color="#F0F6FC" /></a
+							>{$LL.APP_NAV_BUTTON_DONATE()} <IconHeart width="16px" height="16px" color="#F0F6FC" /></a
 						>
 						<a class="donate-info" href="https://coldwire.org/donate#about" target="_blank"
-							>How we spend it</a
+							>{$LL.APP_NAV_TEXT_DONATE_HOW()}</a
 						>
 					</div>
 				</div>
