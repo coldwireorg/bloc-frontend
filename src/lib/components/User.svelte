@@ -92,10 +92,11 @@
 		align-items: center;
 		justify-content: center;
 		user-select: none;
+    color: var(--complementary-white);
 	}
 
 	.shared {
-		border: 4px solid var(--secondary-gray-2);
+		border: 4px solid var(--complementary-gray-2);
 		margin-right: -16px;
 	}
 </style>

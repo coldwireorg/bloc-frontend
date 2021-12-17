@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
+  import { session } from '$app/stores';
 
 	import { bitsToSize } from '$lib/utils/converters';
 
@@ -18,7 +18,9 @@
 	let windowWidth;
 	let navToogle = false;
 
-	function logout() {}
+	function logout() {
+    goto('/auth/logout')
+  }
 </script>
 
 <svelte:window bind:outerWidth={windowWidth} />
@@ -28,13 +30,13 @@
 		<i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
 		<div class="links">
 			<div class="files">
-				<a href="/app/files/" sveltekit:prefetch class:active={$page.path === '/app/files'}
+				<a href="/app/files/" class:active={$page.path === '/app/files'}
 					><IconFolder color="#F0F6FC40" width="18px" height="18px" /> My Files</a
 				>
-				<a href="/app/favorites/" sveltekit:prefetch class:active={$page.path === '/app/favorites'}
+				<a href="/app/files/favorites/" class:active={$page.path === '/app/favorites'}
 					><IconStar color="#F0F6FC40" width="18px" height="18px" /> Favorites</a
 				>
-				<a href="/app/shared/" sveltekit:prefetch class:active={$page.path === '/app/shared'}
+				<a href="/app/files/shared/" class:active={$page.path === '/app/shared'}
 					><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> Shared with me</a
 				>
 			</div>
@@ -46,14 +48,14 @@
 				>
 					<div class="infos">
 						<div class="user">
-							<User username={$session.username} />
-							<span>{$session.username}</span>
+							<User username={$session.user.username} />
+							<span>{$session.user.username}</span>
 						</div>
 						<IconExit on:click={() => logout()} color="#F0F6FC40" width="16px" height="18px" />
 					</div>
 					<div class="user-quota">
-						<ProgressBar height="5px" width="100%" progress={session.quota.total} />
-						<span>{bitsToSize(session.quota.total)}/{bitsToSize(session.quota.max)}</span>
+						<ProgressBar height="5px" width="100%" progress={(Math.floor(($session.quota.total / $session.quota.max) * 100))} />
+						<span>{bitsToSize($session.quota.total)}/{bitsToSize($session.quota.max)}</span>
 					</div>
 				</div>
 				<div class="help">
@@ -87,7 +89,7 @@
 
 		width: 200px;
 
-		background-color: var(--secondary-gray-3);
+		background-color: var(--complementary-gray-3);
 
 		display: flex;
 		flex-direction: column;
@@ -99,7 +101,7 @@
 		padding-top: 24px;
 		padding-bottom: 24px;
 
-		color: var(--secondary-white);
+		color: var(--complementary-white-25);
 	}
 
 	.logo {
@@ -138,11 +140,11 @@
 	}
 
 	.files a:hover {
-		background-color: var(--secondary-white-5);
+		background-color: var(--complementary-white-5);
 	}
 
 	.files a.active {
-		background-color: var(--secondary-white-5);
+		background-color: var(--complementary-white-5);
 	}
 
 	.more {
@@ -155,7 +157,7 @@
 	.more .account {
 		height: 90px;
 
-		background-color: var(--secondary-white-5);
+		background-color: var(--complementary-white-5);
 		border: 1px solid transparent;
 		border-radius: 8px;
 
@@ -168,11 +170,11 @@
 	}
 
 	.more .account:hover {
-		border: 1px solid var(--secondary-white-5);
+		border: 1px solid var(--complementary-white-5);
 	}
 
 	.more .account-active {
-		border: 1px solid var(--secondary-white-5);
+		border: 1px solid var(--complementary-white-5);
 	}
 
 	.more .account .infos {
@@ -248,7 +250,7 @@
 
 	.more .help .donate .donate-info {
 		font-size: 12px;
-		color: var(--secondary-white-50);
+		color: var(--complementary-white-50);
 	}
 
 	.mobile-btn {

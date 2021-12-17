@@ -65,3 +65,8 @@ body {
 
 	margin: 0;
 }
+
+a, span {
+  text-decoration: none;
+  color: var(--complementary-white);
+}
