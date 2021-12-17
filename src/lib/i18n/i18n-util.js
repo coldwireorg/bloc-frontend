@@ -11,44 +11,44 @@
  * @typedef { import('./i18n-types.js').TranslationFunctions } TranslationFunctions
  */
 
-import { i18nString as initI18nString, i18nObjectLoaderAsync } from 'typesafe-i18n'
+import { i18nString as initI18nString, i18nObjectLoaderAsync } from 'typesafe-i18n';
 
-import { detectLocale as detectLocaleFn } from 'typesafe-i18n/detectors'
-import { initFormatters } from './formatters.js'
+import { detectLocale as detectLocaleFn } from 'typesafe-i18n/detectors';
+import { initFormatters } from './formatters.js';
 
 /** @type { Locales } */
-export const baseLocale = 'en'
+export const baseLocale = 'en';
 
 /** @type { Locales[] } */
-export const locales = [
-	'en'
-]
+export const locales = ['en'];
 
 /** @type { Record<Locales, () => Promise<any>> } */
 const localeTranslationLoaders = {
-	en: () => import('./en/index.js'),
-}
+	en: () => import('./en/index.js')
+};
 
 /**
  * @param { Locales } locale
  * @return { Promise<Translation> }
  */
-export const getTranslationForLocale = async (locale) => (await (localeTranslationLoaders[locale] || localeTranslationLoaders[baseLocale])()).default
+export const getTranslationForLocale = async (locale) =>
+	(await (localeTranslationLoaders[locale] || localeTranslationLoaders[baseLocale])()).default;
 
 /**
  * @param { Locales } locale
  * @return { Promise<TranslationFunctions> }
  */
-export const i18nObject = (locale) => i18nObjectLoaderAsync(locale, getTranslationForLocale, initFormatters)
+export const i18nObject = (locale) =>
+	i18nObjectLoaderAsync(locale, getTranslationForLocale, initFormatters);
 
 /**
  * @param { Locales } locale
  * @return { Promise<TranslateByString> }
  */
-export const i18nString = async (locale) => initI18nString(locale, await initFormatters(locale))
+export const i18nString = async (locale) => initI18nString(locale, await initFormatters(locale));
 
 /**
  * @param { LocaleDetector[] } detectors
  * @return { Locales }
  */
-export const detectLocale = (...detectors) => detectLocaleFn(baseLocale, locales, ...detectors)
+export const detectLocale = (...detectors) => detectLocaleFn(baseLocale, locales, ...detectors);

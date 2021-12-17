@@ -14,7 +14,7 @@ export const initFormatters = async (locale) => {
 	/** @type { Formatters } */
 	const formatters = {
 		// add your formatter functions here
-	}
+	};
 
-	return formatters
-}
+	return formatters;
+};

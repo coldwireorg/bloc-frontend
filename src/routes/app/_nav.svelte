@@ -1,275 +1,294 @@
 <script>
-  import { page } from '$app/stores';
-  import { goto } from '$app/navigation'
-  import { session } from '$app/stores'
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { session } from '$app/stores';
 
-  import IconFolder from '$lib/components/icons/IconFolder.svelte'
-  import IconStar from '$lib/components/icons/IconStar.svelte'
-  import IconPeoples from '$lib/components/icons/IconPeoples.svelte'
-  import IconHeart from '$lib/components/icons/IconHeart.svelte'
-  import IconExit from '$lib/components/icons/IconExit.svelte'
-  import IconMenu from '$lib/components/icons/IconMenu.svelte'
+	import { bitsToSize } from '$lib/utils/converters';
 
-  import User from '$lib/components/User.svelte'
+	import IconFolder from '$lib/components/icons/IconFolder.svelte';
+	import IconStar from '$lib/components/icons/IconStar.svelte';
+	import IconPeoples from '$lib/components/icons/IconPeoples.svelte';
+	import IconHeart from '$lib/components/icons/IconHeart.svelte';
+	import IconExit from '$lib/components/icons/IconExit.svelte';
+	import IconMenu from '$lib/components/icons/IconMenu.svelte';
 
-  let windowWidth
-  let navToogle = false
+	import User from '$lib/components/User.svelte';
+	import ProgressBar from '$lib/components/ProgressBar.svelte';
 
-  function logout() {
-    
-  }
+	let windowWidth;
+	let navToogle = false;
+
+	function logout() {}
 </script>
 
 <svelte:window bind:outerWidth={windowWidth} />
 
 {#if windowWidth > 1080 || (windowWidth <= 1080 && navToogle)}
-  <div class="navbar">
-    <i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
-    <div class="links">
-      <div class="files">
-        <a href="/app/files/" sveltekit:prefetch class:active={$page.path==='/app/files'}><IconFolder color="#F0F6FC40" width="18px" height="18px" /> My Files</a>
-        <a href="/app/favorites/" sveltekit:prefetch class:active={$page.path==='/app/favorites'}><IconStar color="#F0F6FC40" width="18px" height="18px" /> Favorites</a>
-        <a href="/app/shared/" sveltekit:prefetch class:active={$page.path==='/app/shared'}><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> Shared with me</a>
-      </div>
-      <div class="more">
-        <div class:account-active={$page.path==='/app/settings'} class="account" on:click={() => goto('/app/settings')}>
-          <div class="infos">
-            <div class="user">
-              <User username={$session.username} />
-              <span>{$session.username}</span>
-            </div>
-            <IconExit on:click={() => logout()} color="#F0F6FC40" width="16px" height="18px" />
-          </div>
-          <div class="user-quota">
-            <ProgressBar height="5px" width="100%" progress={qpercent} /> <span>{bitsToSize($quota.total)}/{bitsToSize($quota.max)}</span>
-          </div>
-        </div>
-        <div class="help">
-          <span>Help us to keep our services alive!</span>
-          <div class="donate">
-            <a class="donate-btn" href="https://coldwire.org/donate" target="_blank">Donate <IconHeart width="16px" height="16px" color="#F0F6FC" /></a>
-            <a class="donate-info" href="https://coldwire.org/donate#about" target="_blank">How we spend it</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {#if windowWidth <= 1080 && navToogle}
-    <div on:click={navToogle = !navToogle} href="#" class="mobile-btn"><IconMenu color="#F0F6FC40" size="32px" /></div>
-    <div class="overlay" on:click={navToogle = false}></div>
-  {/if}
+	<div class="navbar">
+		<i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
+		<div class="links">
+			<div class="files">
+				<a href="/app/files/" sveltekit:prefetch class:active={$page.path === '/app/files'}
+					><IconFolder color="#F0F6FC40" width="18px" height="18px" /> My Files</a
+				>
+				<a href="/app/favorites/" sveltekit:prefetch class:active={$page.path === '/app/favorites'}
+					><IconStar color="#F0F6FC40" width="18px" height="18px" /> Favorites</a
+				>
+				<a href="/app/shared/" sveltekit:prefetch class:active={$page.path === '/app/shared'}
+					><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> Shared with me</a
+				>
+			</div>
+			<div class="more">
+				<div
+					class:account-active={$page.path === '/app/settings'}
+					class="account"
+					on:click={() => goto('/app/settings')}
+				>
+					<div class="infos">
+						<div class="user">
+							<User username={$session.username} />
+							<span>{$session.username}</span>
+						</div>
+						<IconExit on:click={() => logout()} color="#F0F6FC40" width="16px" height="18px" />
+					</div>
+					<div class="user-quota">
+						<ProgressBar height="5px" width="100%" progress={session.quota.total} />
+						<span>{bitsToSize(session.quota.total)}/{bitsToSize(session.quota.max)}</span>
+					</div>
+				</div>
+				<div class="help">
+					<span>Help us to keep our services alive!</span>
+					<div class="donate">
+						<a class="donate-btn" href="https://coldwire.org/donate" target="_blank"
+							>Donate <IconHeart width="16px" height="16px" color="#F0F6FC" /></a
+						>
+						<a class="donate-info" href="https://coldwire.org/donate#about" target="_blank"
+							>How we spend it</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{#if windowWidth <= 1080 && navToogle}
+		<div on:click={(navToogle = !navToogle)} href="#" class="mobile-btn">
+			<IconMenu color="#F0F6FC40" size="32px" />
+		</div>
+		<div class="overlay" on:click={(navToogle = false)} />
+	{/if}
 {/if}
 
 <style>
-  .navbar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
+	.navbar {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
 
-    width: 200px;
+		width: 200px;
 
-    background-color: var(--secondary-gray-3);
+		background-color: var(--secondary-gray-3);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
 
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+		padding-left: 32px;
+		padding-right: 32px;
+		padding-top: 24px;
+		padding-bottom: 24px;
 
-    color: var(--secondary-white);
-  }
+		color: var(--secondary-white);
+	}
 
-  .logo {
-    position: absolute;
-    top: 24px; left: 32px;
-    width: 30px;
-  }
+	.logo {
+		position: absolute;
+		top: 24px;
+		left: 32px;
+		width: 30px;
+	}
 
-  .links {
-    margin-top: 100px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+	.links {
+		margin-top: 100px;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 
-  .files span {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+	.files a {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
 
-    padding: 0px 14px;
-    margin: 16px 0px;
-    gap: 12px;
+		padding: 0px 14px;
+		margin: 16px 0px;
+		gap: 12px;
 
-    height: 42px;
-    border-radius: 8px;
+		height: 42px;
+		border-radius: 8px;
 
-    font-size: 14px;
+		font-size: 14px;
 
-    cursor: pointer;
-    transition-duration: 0.3s;
-  }
+		cursor: pointer;
+		transition-duration: 0.3s;
+	}
 
-  .files span:hover {
-    background-color: var(--secondary-white-5);
-  }
+	.files a:hover {
+		background-color: var(--secondary-white-5);
+	}
 
-  .files span.active {
-    background-color: var(--secondary-white-5);
-  }
+	.files a.active {
+		background-color: var(--secondary-white-5);
+	}
 
-  .more {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+	.more {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
 
-  .more .account {
-    height: 90px;
+	.more .account {
+		height: 90px;
 
-    background-color: var(--secondary-white-5);
-    border: 1px solid transparent;
-    border-radius: 8px;
+		background-color: var(--secondary-white-5);
+		border: 1px solid transparent;
+		border-radius: 8px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 16px;
 
-    padding: 0 16px;
-  }
+		padding: 0 16px;
+	}
 
-  .more .account:hover {
-    border: 1px solid var(--secondary-white-5);
-  }
+	.more .account:hover {
+		border: 1px solid var(--secondary-white-5);
+	}
 
-  .more .account-active {
-    border: 1px solid var(--secondary-white-5);
-  }
+	.more .account-active {
+		border: 1px solid var(--secondary-white-5);
+	}
 
+	.more .account .infos {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-  .more .account .infos {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+	.more .account .infos .user {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 16px;
+		font-size: 14px;
+	}
 
-  .more .account .infos .user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    font-size: 14px;
-  }
+	.more .account .user-quota {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+	}
 
-  .more .account .user-quota {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
+	.more .account .user-quota span {
+		font-size: 10px;
+		text-align: right;
+		flex-shrink: 0;
+	}
 
+	.more .help {
+		height: 130px;
 
-  .more .account .user-quota span {
-    font-size: 10px;
-    text-align: right;
-    flex-shrink: 0;
-  }
+		background-color: var(--primary-green-25);
+		border-radius: 8px;
 
-  .more .help {
-    height: 130px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
 
-    background-color: var(--primary-green-25);
-    border-radius: 8px;
+		padding: 0 16px;
+	}
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+	.more .help span {
+		font-size: 14px;
+	}
 
-    padding: 0 16px;
-  }
+	.more .help .donate {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		gap: 16px;
+	}
 
-  .more .help span {
-    font-size: 14px;
-  }
-  
-  .more .help .donate {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 16px;
-  }
+	.more .help .donate .donate-btn {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		padding: 0px 8px;
 
-  .more .help .donate .donate-btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 0px 8px;
+		font-size: 12px;
 
-    font-size: 12px;
-    
-    height: 32px;
+		height: 32px;
 
-    background-color: var(--primary-green);
-    border-radius: 8px;
-  }
+		background-color: var(--primary-green);
+		border-radius: 8px;
+	}
 
-  .more .help .donate .donate-info {
-    font-size: 12px;
-    color: var(--secondary-white-50);
-  }
+	.more .help .donate .donate-info {
+		font-size: 12px;
+		color: var(--secondary-white-50);
+	}
 
-  .mobile-btn {
-    position: absolute;
-    top: 24px;
-    left: 32px;
+	.mobile-btn {
+		position: absolute;
+		top: 24px;
+		left: 32px;
 
-    max-width: 25px;
-    z-index: 200;
+		max-width: 25px;
+		z-index: 200;
 
-    display: none;
+		display: none;
 
-    font-size: 12px;
-  }
+		font-size: 12px;
+	}
 
-  .overlay {
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 90;
-  }
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 90;
+	}
 
-  @media only screen and (max-width: 1080px) {
-    .navbar {
-      z-index: 100;
-    }
+	@media only screen and (max-width: 1080px) {
+		.navbar {
+			z-index: 100;
+		}
 
-    .logo {
-      display: none;
-    }
+		.logo {
+			display: none;
+		}
 
-    .links {
-      margin-top: 50px;
-    }
+		.links {
+			margin-top: 50px;
+		}
 
-    .mobile-btn {
-      display: block;
-    }
-  }
+		.mobile-btn {
+			display: block;
+		}
+	}
 </style>

@@ -1,7 +1,7 @@
 {
-   "adapter": "svelte",
-   "esmImports": true,
-   "outputFormat": "JavaScript",
-   "outputPath": "./src/lib/i18n",
-   "$schema": "https://unpkg.com/typesafe-i18n@2.56.0/schema/typesafe-i18n.json"
+	"adapter": "svelte",
+	"esmImports": true,
+	"outputFormat": "JavaScript",
+	"outputPath": "./src/lib/i18n",
+	"$schema": "https://unpkg.com/typesafe-i18n@2.56.0/schema/typesafe-i18n.json"
 }
