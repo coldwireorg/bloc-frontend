@@ -1,11 +1,11 @@
 <script context="module">
-  export async function load({ session }) {
-    if (session.user) {
+	export async function load({ session }) {
+		if (session.user) {
 			return { redirect: '/app/files', status: 302 };
-    } else {
-      return {}
-    }
-  }
+		} else {
+			return {};
+		}
+	}
 </script>
 
 <div class="auth">

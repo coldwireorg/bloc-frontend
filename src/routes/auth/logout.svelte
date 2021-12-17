@@ -1,11 +1,10 @@
 <script context="module">
-  export async function load({ session }) {
-    session.user = {}
-    session.quota = {}
+	export async function load({ session }) {
+		session.user = {};
+		session.quota = {};
+	}
+</script>
 
-    return {
-      status: 302,
-      redirect: '/auth/login'
-    }
-  }
+<script>
+	location.reload();
 </script>

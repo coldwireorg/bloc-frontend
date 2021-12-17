@@ -92,7 +92,7 @@
 		align-items: center;
 		justify-content: center;
 		user-select: none;
-    color: var(--complementary-white);
+		color: var(--complementary-white);
 	}
 
 	.shared {

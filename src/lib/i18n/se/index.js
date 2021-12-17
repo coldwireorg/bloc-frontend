@@ -6,8 +6,8 @@
 
 /** @type { BaseTranslation } */
 const en = {
-	FIELD_SEARCH_BAR: 'sök...',
-	BUTTON_UPLOAD: 'ladda upp',
+	APP_FIELD_SEARCH_BAR: 'sök...',
+	APP_BUTTON_UPLOAD: 'ladda upp',
 
 	AUTH_FIELD_USERNAME: 'användarnamn',
 	AUTH_FIELD_PASSWORD: 'lösenord',
@@ -21,7 +21,7 @@ const en = {
 	APP_NAV_LINK_FILES: 'Mina Filer',
 	APP_NAV_LINK_FAVORITES: 'Favoriter',
 	APP_NAV_LINK_SHARED: 'Delat med mig',
-	APP_NAV_TEXT_DONATE: 'Hjälp oss att upprätthålla våra tjänster!',
+	APP_NAV_TEXT_DONATE: 'Hjälp oss att hålla våra tjänster vid liv!',
 	APP_NAV_TEXT_DONATE_HOW: 'Hur vi spenderar pengarna',
 	APP_NAV_BUTTON_DONATE: 'Donera',
 

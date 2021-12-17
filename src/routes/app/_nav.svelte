@@ -3,7 +3,7 @@
 
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-  import { session } from '$app/stores';
+	import { session } from '$app/stores';
 
 	import { bitsToSize } from '$lib/utils/converters';
 
@@ -21,8 +21,8 @@
 	let navToogle = false;
 
 	function logout() {
-    goto('/auth/logout')
-  }
+		goto('/auth/logout');
+	}
 </script>
 
 <svelte:window bind:outerWidth={windowWidth} />
@@ -36,10 +36,12 @@
 					><IconFolder color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_FILES()}</a
 				>
 				<a href="/app/files/favorites/" class:active={$page.path === '/app/favorites'}
-					><IconStar color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_FAVORITES()}</a
+					><IconStar color="#F0F6FC40" width="18px" height="18px" />
+					{$LL.APP_NAV_LINK_FAVORITES()}</a
 				>
 				<a href="/app/files/shared/" class:active={$page.path === '/app/shared'}
-					><IconPeoples color="#F0F6FC40" width="18px" height="18px" /> {$LL.APP_NAV_LINK_SHARED()}</a
+					><IconPeoples color="#F0F6FC40" width="18px" height="18px" />
+					{$LL.APP_NAV_LINK_SHARED()}</a
 				>
 			</div>
 			<div class="more">
@@ -56,7 +58,11 @@
 						<IconExit on:click={() => logout()} color="#F0F6FC40" width="16px" height="18px" />
 					</div>
 					<div class="user-quota">
-						<ProgressBar height="5px" width="100%" progress={(Math.floor(($session.quota.total / $session.quota.max) * 100))} />
+						<ProgressBar
+							height="5px"
+							width="100%"
+							progress={Math.floor(($session.quota.total / $session.quota.max) * 100)}
+						/>
 						<span>{bitsToSize($session.quota.total)}/{bitsToSize($session.quota.max)}</span>
 					</div>
 				</div>
@@ -64,7 +70,8 @@
 					<span>{$LL.APP_NAV_TEXT_DONATE()}</span>
 					<div class="donate">
 						<a class="donate-btn" href="https://coldwire.org/donate" target="_blank"
-							>{$LL.APP_NAV_BUTTON_DONATE()} <IconHeart width="16px" height="16px" color="#F0F6FC" /></a
+							>{$LL.APP_NAV_BUTTON_DONATE()}
+							<IconHeart width="16px" height="16px" color="#F0F6FC" /></a
 						>
 						<a class="donate-info" href="https://coldwire.org/donate#about" target="_blank"
 							>{$LL.APP_NAV_TEXT_DONATE_HOW()}</a

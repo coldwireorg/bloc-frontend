@@ -9,6 +9,7 @@
 </script>
 
 <script>
+	import { session } from '$app/stores';
 	import LL from '$lib/i18n/i18n-svelte';
 
 	import TextField from '$lib/components/TextField.svelte';
@@ -20,6 +21,17 @@
 	let username;
 	let password;
 	let repassword;
+
+	function auth() {
+		$session.user = {
+			username: 'monoko'
+		};
+
+		$session.quota = {
+			total: 2000000,
+			max: 10000000
+		};
+	}
 </script>
 
 <div class="auth-form">
@@ -36,7 +48,7 @@
 			<TextField bind:value={repassword} type="password" placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{/if}
 		<div class="submit">
-			<Button on:click={() => alert('test')} on:submit={() => alert('test')}
+			<Button on:click={() => auth()} on:submit={() => auth()}
 				>{action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}</Button
 			>
 			<p>

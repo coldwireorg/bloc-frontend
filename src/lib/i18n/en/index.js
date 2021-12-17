@@ -6,8 +6,8 @@
 
 /** @type { BaseTranslation } */
 const en = {
-	FIELD_SEARCH_BAR: 'search...',
-	BUTTON_UPLOAD: 'upload',
+	APP_FIELD_SEARCH_BAR: 'search...',
+	APP_BUTTON_UPLOAD: 'upload',
 
 	AUTH_FIELD_USERNAME: 'username',
 	AUTH_FIELD_PASSWORD: 'password',
