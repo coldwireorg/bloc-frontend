@@ -16,6 +16,7 @@
 
 	import User from '$lib/components/User.svelte';
 	import ProgressBar from '$lib/components/ProgressBar.svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	let windowWidth;
 	let navToogle = false;
@@ -69,10 +70,10 @@
 				<div class="help">
 					<span>{$LL.APP_NAV_TEXT_DONATE()}</span>
 					<div class="donate">
-						<a class="donate-btn" href="https://coldwire.org/donate" target="_blank"
-							>{$LL.APP_NAV_BUTTON_DONATE()}
-							<IconHeart width="16px" height="16px" color="#F0F6FC" /></a
-						>
+						<Button link="https://coldwire.org/donate" target="_blank" color="var(--primary-green)">
+							{$LL.APP_NAV_BUTTON_DONATE()}
+							<IconHeart width="16px" height="16px" color="#F0F6FC" />
+						</Button>
 						<a class="donate-info" href="https://coldwire.org/donate#about" target="_blank"
 							>{$LL.APP_NAV_TEXT_DONATE_HOW()}</a
 						>
@@ -239,22 +240,6 @@
 		justify-content: space-between;
 		width: 100%;
 		gap: 16px;
-	}
-
-	.more .help .donate .donate-btn {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		gap: 8px;
-		padding: 0px 8px;
-
-		font-size: 12px;
-
-		height: 32px;
-
-		background-color: var(--primary-green);
-		border-radius: 8px;
 	}
 
 	.more .help .donate .donate-info {

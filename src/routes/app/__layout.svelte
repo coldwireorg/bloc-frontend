@@ -10,13 +10,13 @@
 
 <script>
 	import Nav from './_nav.svelte';
-  import TopBar from './_topBar.svelte';
+	import TopBar from './_topBar.svelte';
 </script>
 
 <Nav />
 
 <div class="content">
-  <TopBar/>
+	<TopBar />
 	<slot />
 </div>
 

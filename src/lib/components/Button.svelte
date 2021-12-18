@@ -1,13 +1,16 @@
 <script>
 	export let color = '';
+	export let link = '#';
+	export let target = '';
 </script>
 
-<button
+<a
 	style={color != '' ? 'background-color:' + color + ';' : ''}
-	href="#"
+	href={link}
+	{target}
 	on:submit
 	on:click
-	class="btn"><slot /></button
+	class="btn"><slot /></a
 >
 
 <style>
@@ -19,8 +22,9 @@
 		align-items: center;
 		gap: 8px;
 
-		padding: 0 16px 0 16px;
+		padding: 0px 8px;
 		font-size: 12px;
+		font-weight: 600;
 
 		background-color: var(--primary-blue);
 		border-radius: 8px;
