@@ -1,4 +1,6 @@
-export const fileTypes = [
+import { getFileExtension } from './converters';
+
+const fileTypes = [
 	{
 		exts: ['.docx', '.doc'],
 		color: 'blue',
@@ -30,3 +32,12 @@ export const fileTypes = [
 		icon: 'image'
 	}
 ];
+
+export function parseFile(fileName) {
+	let ext = getFileExtension(fileName);
+	for (let i in fileTypes) {
+		if (fileTypes[i].exts.indexOf(ext) >= 0) {
+			return fileTypes[i];
+		}
+	}
+}

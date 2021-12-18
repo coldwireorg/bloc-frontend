@@ -1,10 +1,13 @@
 <script>
 	import LL from '$lib/i18n/i18n-svelte';
-	import { bitsToSize } from '$lib/utils/converters';
+	import { bitsToSize, dateTodate } from '$lib/utils/converters';
 
 	import FileTable from '$lib/components/Files/FileTable.svelte';
+	import FavoriteCard from '$lib/components/Favorites/FavoriteCard.svelte';
 
 	import FileIcon from '$lib/components/Files/FileIcon.svelte';
+	import UserList from '$lib/components/Users/UserList.svelte';
+	import IconStarFill from '$lib/components/icons/IconStarFill.svelte';
 
 	const rows = {
 		fileName: $LL.APP_TABLE_FILE_NAME(),
@@ -15,31 +18,92 @@
 
 	export let files = [
 		{
+			accessId: 'aaaaa',
 			fileName: 'file.jpg',
 			fileSize: 125,
-			accessState: 'PRIVATE',
+			lastEdit: Date.now(),
+			sharedTo: ['monoko', 'patate', 'carotte'],
 			favorite: true
 		}
 	];
+
+	let favorites = files.filter((f) => f.favorite);
 </script>
 
-<FileTable {rows} data={files} let:value let:row>
-	{#if row === 'fileName'}
-		<div class="file-name">
-			<FileIcon fileName={value} />
-			{value}
+{#if favorites.length > 0}
+	<section>
+		<h2>Favorites</h2>
+		<div class="favorite-list">
+			{#each favorites as favorite}
+				<FavoriteCard
+					fileName={favorite.fileName}
+					lastEdit={dateTodate(favorite.lastEdit)}
+					shared={favorite.sharedTo}
+				/>
+			{/each}
 		</div>
-	{:else if row === 'fileSize'}
-		{bitsToSize(value)}
-	{:else}
-		{value}
-	{/if}
-</FileTable>
+	</section>
+{/if}
+
+<section>
+	<h2>Files</h2>
+	<FileTable
+		{rows}
+		data={files}
+		let:value
+		let:row
+		let:favorite
+		on:click={(accessId) => alert(accessId)}
+	>
+		{#if row === 'fileName'}
+			<div class="file-name">
+				<FileIcon fileName={value} />
+				{value}
+				{#if favorite}
+					<IconStarFill color="var(--complementary-white-25)" size="18px" />
+				{/if}
+			</div>
+		{:else if row === 'fileSize'}
+			{bitsToSize(value)}
+		{:else if row === 'lastEdit'}
+			{dateTodate(value)}
+		{:else if row === 'sharedTo'}
+			<UserList users={value} />
+		{:else}
+			{value}
+		{/if}
+	</FileTable>
+</section>
 
 <style>
+	section {
+		margin-top: 32px;
+	}
 	.file-name {
 		display: flex;
 		align-items: center;
 		gap: 8px;
+	}
+
+	.favorite-list {
+		display: inline-flex;
+		width: calc(100% + 32px);
+
+		flex-wrap: nowrap;
+		flex-direction: row;
+
+		justify-content: start;
+		align-items: center;
+		gap: 30px;
+
+		overflow-x: auto;
+		scrollbar-width: none;
+
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+	}
+
+	.favorite-list::-webkit-scrollbar {
+		display: none;
 	}
 </style>

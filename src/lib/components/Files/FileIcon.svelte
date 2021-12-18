@@ -1,6 +1,5 @@
 <script>
-	import { fileTypes } from '$lib/utils/fileTypes';
-	import { getFileExtension } from '$lib/utils/converters';
+	import { parseFile } from '$lib/utils/fileTypes';
 
 	export let fileName = 'file.jpg';
 	export let size = '12px';
@@ -8,12 +7,10 @@
 	let icon = 'file';
 	let color = 'gray';
 
-	let ext = getFileExtension(fileName);
-	for (let i in fileTypes) {
-		if (fileTypes[i].exts.indexOf(ext) >= 0) {
-			icon = fileTypes[i].icon;
-			color = fileTypes[i].color;
-		}
+	let res = parseFile(fileName);
+	if (res != undefined) {
+		icon = res.icon;
+		color = res.color;
 	}
 </script>
 

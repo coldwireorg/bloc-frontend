@@ -14,7 +14,7 @@
 	import IconExit from '$lib/components/icons/IconExit.svelte';
 	import IconMenu from '$lib/components/icons/IconMenu.svelte';
 
-	import User from '$lib/components/User.svelte';
+	import User from '$lib/components/Users/User.svelte';
 	import ProgressBar from '$lib/components/ProgressBar.svelte';
 	import Button from '$lib/components/Button.svelte';
 

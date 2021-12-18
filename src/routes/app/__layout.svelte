@@ -30,4 +30,10 @@
 
 		padding: 32px;
 	}
+
+	@media only screen and (max-width: 1080px) {
+		.content {
+			left: 0;
+		}
+	}
 </style>
