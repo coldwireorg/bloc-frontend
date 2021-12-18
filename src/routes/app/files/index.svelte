@@ -2,8 +2,8 @@
 	import LL from '$lib/i18n/i18n-svelte';
 	import { bitsToSize, dateTodate } from '$lib/utils/converters';
 
-  import { contextmenu } from '$lib/stores/contextmenu'
-  import { files as fileStore, favorites } from '$lib/stores/files'
+	import { contextmenu } from '$lib/stores/contextmenu';
+	import { files as fileStore, favorites } from '$lib/stores/files';
 
 	import FileTable from '$lib/components/Files/FileTable.svelte';
 	import FavoriteCard from '$lib/components/Favorites/FavoriteCard.svelte';
@@ -22,8 +22,8 @@
 	$fileStore = [
 		{
 			accessId: 'aaaaa',
-      accessState: 'PRIVATE',
-      fileId: 'bbbbbbbb',
+			accessState: 'PRIVATE',
+			fileId: 'bbbbbbbb',
 			fileName: 'file.jpg',
 			fileSize: 125,
 			lastEdit: Date.now(),
@@ -51,7 +51,7 @@
 
 <section>
 	<h2>Files</h2>
-	<FileTable {rows} data={$fileStore} let:value let:row let:favorite >
+	<FileTable {rows} data={$fileStore} let:value let:row let:favorite>
 		{#if row === 'fileName'}
 			<FileIcon fileName={value} />
 			{value}

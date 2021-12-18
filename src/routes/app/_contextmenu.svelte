@@ -1,6 +1,6 @@
 <script>
-  import { contextmenu } from '$lib/stores/contextmenu'
-  import { files } from '$lib/stores/files'
+	import { contextmenu } from '$lib/stores/contextmenu';
+	import { files } from '$lib/stores/files';
 
 	import Menu from '$lib/components/Menus/Menu.svelte';
 	import MenuOption from '$lib/components/Menus/MenuOption.svelte';
@@ -18,12 +18,12 @@
 	let shareSub = false;
 	let moveToSub = false;
 
-  contextmenu.subscribe(d => {
-    if (!d.open) {
-      shareSub = false;
-	    moveToSub = false;
-    }
-  })
+	contextmenu.subscribe((d) => {
+		if (!d.open) {
+			shareSub = false;
+			moveToSub = false;
+		}
+	});
 </script>
 
 <Menu open={$contextmenu.open} x={$contextmenu.x - 148} y={$contextmenu.y}>

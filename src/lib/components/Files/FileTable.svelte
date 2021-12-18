@@ -1,5 +1,5 @@
 <script>
-  import { contextmenu } from '$lib/stores/contextmenu'
+	import { contextmenu } from '$lib/stores/contextmenu';
 
 	export let rows;
 	export let data;

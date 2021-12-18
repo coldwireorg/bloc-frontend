@@ -1,8 +1,9 @@
-# Bloc Frontend 
+# Bloc Frontend
 
 This is the repository of the web frontend of the [bloc project](https://github.com/coldwireorg/bloc)
 
 this project is built with the [svelte](https://svelte.dev/) framework using [sveltekit](https://kit.svelte.dev/)
+
 ## Running
 
 ```bash
@@ -19,11 +20,15 @@ npm run dev
 ```
 
 ## Building
+
 ### For NodeJS
+
 ```bash
 npm run build
 ```
+
 ### For Docker
+
 ```bash
 docker build -t coldwireorg/bloc-frontend .
 ```

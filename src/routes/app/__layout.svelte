@@ -9,7 +9,7 @@
 </script>
 
 <script>
-  import { contextmenu } from '$lib/stores/contextmenu'
+	import { contextmenu } from '$lib/stores/contextmenu';
 
 	import Nav from './_nav.svelte';
 	import TopBar from './_topBar.svelte';
@@ -21,7 +21,7 @@
 
 <div class="content" on:click={() => contextmenu.close()}>
 	<TopBar />
-	<slot/>
+	<slot />
 </div>
 
 <style>
