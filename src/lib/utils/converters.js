@@ -49,3 +49,17 @@ export const dateTodate = (date) => {
 
 	return 'Uploaded recently';
 };
+
+export const getFileExtension = (filename) => {
+	if (filename) {
+		const reg = filename.match(/\.[0-9a-z]+$/i);
+		if (reg != null || reg != undefined) {
+			return reg[0];
+		} else {
+			return 'Unknow';
+		}
+	}
+	{
+		return '.error';
+	}
+};

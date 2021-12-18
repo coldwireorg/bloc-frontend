@@ -1,22 +1,24 @@
 <script>
-	export let icon = 'file';
-	export let size = '12px';
-	export let color = 'gray';
+	import { fileTypes } from '$lib/utils/fileTypes';
+	import { getFileExtension } from '$lib/utils/converters';
 
-	let customClass = '';
-	export { customClass as class };
+	export let fileName = 'file.jpg';
+	export let size = '12px';
+
+	let icon = 'file';
+	let color = 'gray';
+
+	let ext = getFileExtension(fileName);
+	for (let i in fileTypes) {
+		if (fileTypes[i].exts.indexOf(ext) >= 0) {
+			icon = fileTypes[i].icon;
+			color = fileTypes[i].color;
+		}
+	}
 </script>
 
-<i class="icon" style="background-color: var(--complementary-{color});">
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 16 16"
-		width={size}
-		height={size}
-		class={customClass}
-		{...$$restProps}
-		on:click
-	>
+<i class="icon" style="background-color: var(--secondary-{color});">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width={size} height={size} on:click>
 		{#if icon == 'file'}
 			<path
 				fill="white"

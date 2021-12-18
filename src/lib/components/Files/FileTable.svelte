@@ -17,7 +17,7 @@
 			<tr>
 				{#each Object.entries(rows) as r}
 					{#if Object.keys(d).includes(r[0])}
-						<td>{d[r[0]]}</td>
+						<td><slot value={d[r[0]]} row={r[0]} /></td>
 					{:else}
 						<td>—</td>
 					{/if}
