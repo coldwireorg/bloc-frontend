@@ -15,6 +15,20 @@
 	{...$$restProps}
 	on:click
 >
-  <path d="M12 4L4 12" opacity={opacity} stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4 4L12 12" opacity={opacity} stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<path
+		d="M12 4L4 12"
+		{opacity}
+		stroke={color}
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M4 4L12 12"
+		{opacity}
+		stroke={color}
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
 </svg>

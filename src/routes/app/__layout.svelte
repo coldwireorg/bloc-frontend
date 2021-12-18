@@ -10,24 +10,27 @@
 
 <script>
 	import { contextmenu } from '$lib/stores/contextmenu';
-  import { notifications } from '$lib/stores/notifications';
+	import { notifications } from '$lib/stores/notifications';
 
 	import Nav from './_nav.svelte';
 	import TopBar from './_topBar.svelte';
 	import Contextmenu from './_contextmenu.svelte';
 
-  import Notification from '$lib/components/Notifications/Notification.svelte';
+	import Notification from '$lib/components/Notifications/Notification.svelte';
+	import NotificationLoading from '$lib/components/Notifications/NotificationLoading.svelte';
 
-  notifications.subscribe(console.log)
+	notifications.subscribe(console.log);
 
-  notifications.create(5000, {})
+	notifications.create(0, {});
 </script>
 
 <Contextmenu />
 <div class="notifications">
-  {#each $notifications as notification}
-    <Notification id={notification.id} data={notification.data} />
-  {/each}
+	{#each $notifications as notification}
+		<Notification id={notification.id} data={notification.data}>
+			<NotificationLoading text="Uploading file.jpg..." progress="20" />
+		</Notification>
+	{/each}
 </div>
 
 <Nav />
@@ -47,17 +50,17 @@
 		padding: 32px;
 	}
 
-  .notifications {
-    position: fixed;
-    left: 40%;
-    right: calc(40% - 200px);
-    pointer-events: none;
-    direction: revert;
-    flex-direction: column-reverse;
-    display: flex;
-    top: 50px;
-    bottom: 50px;
-  }
+	.notifications {
+		position: absolute;
+		top: 0;
+		bottom: 32px;
+		height: auto;
+		right: 64px;
+		width: 256px;
+		pointer-events: none;
+		flex-direction: column-reverse;
+		display: flex;
+	}
 
 	@media only screen and (max-width: 1080px) {
 		.content {
