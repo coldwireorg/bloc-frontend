@@ -1,4 +1,6 @@
 <script>
+  import { contextmenu } from '$lib/stores/contextmenu'
+
 	export let rows;
 	export let data;
 </script>
@@ -15,7 +17,7 @@
 		<br />
 		<tbody>
 			{#each data as d, i}
-				<tr>
+				<tr on:contextmenu|preventDefault={(e) => contextmenu.open(e, d)}>
 					{#each Object.entries(rows) as r}
 						{#if Object.keys(d).includes(r[0])}
 							<td>

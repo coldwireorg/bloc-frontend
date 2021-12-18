@@ -20,8 +20,8 @@
 	.menu {
 		position: absolute;
 		width: 148px;
-		background-color: var(--secondary-gray-3);
-		border: 1px solid var(--secondary-white-5);
+		background-color: var(--complementary-gray-3);
+		border: 1px solid var(--complementary-white-5);
 		border-radius: 8px;
 		padding: 8px 0;
 
@@ -47,6 +47,6 @@
 		align-items: center;
 		gap: 8px;
 		font-size: 10px;
-		color: var(--secondary-white-25);
+		color: var(--complementary-white-25);
 	}
 </style>

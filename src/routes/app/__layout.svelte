@@ -9,24 +9,19 @@
 </script>
 
 <script>
+  import { contextmenu } from '$lib/stores/contextmenu'
+
 	import Nav from './_nav.svelte';
 	import TopBar from './_topBar.svelte';
 	import Contextmenu from './_contextmenu.svelte';
-
-	let ctxIsOpen = false;
-	let ctxX = 0;
-	let ctxY = 0;
-
-  function onMessage(event) {
-    
-  }
 </script>
 
 <Nav />
+<Contextmenu />
 
-<div class="content">
+<div class="content" on:click={() => contextmenu.close()}>
 	<TopBar />
-	<Contextmenu open={ctxIsOpen} x={ctxX} y={ctxY} />
+	<slot/>
 </div>
 
 <style>

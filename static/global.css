@@ -26,10 +26,12 @@
 }
 
 :root {
-	--primary-green: #009639;
-	--primary-green-25: rgba(0, 143, 100, 0.25);
-	--primary-magenta: CC317C;
-	--primary-blue: #0061ff;
+  --primary-green: #009639;
+  --primary-green-25: rgba(0, 143, 100, 0.25);
+  --primary-green-1: rgba(0, 143, 100, 0.1);
+  --primary-blue: #0061FF;
+  --primary-blue-25: rgba(0, 97, 255, 0.25);
+  --primary-blue-1: rgba(0, 97, 255, 0.1);
 
 	--secondary-brown: #807773;
 	--secondary-organge: #d9730d;

@@ -2,6 +2,9 @@
 	import LL from '$lib/i18n/i18n-svelte';
 	import { bitsToSize, dateTodate } from '$lib/utils/converters';
 
+  import { contextmenu } from '$lib/stores/contextmenu'
+  import { files as fileStore, favorites } from '$lib/stores/files'
+
 	import FileTable from '$lib/components/Files/FileTable.svelte';
 	import FavoriteCard from '$lib/components/Favorites/FavoriteCard.svelte';
 
@@ -16,9 +19,11 @@
 		sharedTo: $LL.APP_TABLE_FILE_SHARED_WITH()
 	};
 
-	export let files = [
+	$fileStore = [
 		{
 			accessId: 'aaaaa',
+      accessState: 'PRIVATE',
+      fileId: 'bbbbbbbb',
 			fileName: 'file.jpg',
 			fileSize: 125,
 			lastEdit: Date.now(),
@@ -26,30 +31,18 @@
 			favorite: true
 		}
 	];
-
-	export let contextmenu;
-	export let contextmenux;
-	export let contextmenuy;
-
-	function toggleCtxMenu(e) {
-		contextmenu = !contextmenu;
-		contextmenux = e.clientX;
-		contextmenuy = e.clientY;
-	}
-
-	let favorites = files.filter((f) => f.favorite);
 </script>
 
-{#if favorites.length > 0}
+{#if $favorites.length > 0}
 	<section>
 		<h2>Favorites</h2>
 		<div class="favorite-list">
-			{#each favorites as favorite}
+			{#each $favorites as favorite}
 				<FavoriteCard
 					fileName={favorite.fileName}
 					lastEdit={dateTodate(favorite.lastEdit)}
 					shared={favorite.sharedTo}
-					on:click={(e) => toggleCtxMenu(e)}
+					on:click={(e) => contextmenu.open(e, favorite)}
 				/>
 			{/each}
 		</div>
@@ -58,7 +51,7 @@
 
 <section>
 	<h2>Files</h2>
-	<FileTable {rows} data={files} let:value let:row let:favorite>
+	<FileTable {rows} data={$fileStore} let:value let:row let:favorite >
 		{#if row === 'fileName'}
 			<FileIcon fileName={value} />
 			{value}

@@ -27,7 +27,7 @@
 	}
 
 	.menu-item-hover:hover {
-		background-color: var(--secondary-white-5);
+		background-color: var(--complementary-white-5);
 	}
 
 	.menu-item span {
