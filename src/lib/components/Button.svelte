@@ -2,10 +2,11 @@
 	export let color = '';
 	export let link = '#';
 	export let target = '';
+	export let style;
 </script>
 
 <a
-	style={color != '' ? 'background-color:' + color + ';' : ''}
+	style={(color != '' ? 'background-color:' + color + ';' : '') + style}
 	href={link}
 	{target}
 	on:submit

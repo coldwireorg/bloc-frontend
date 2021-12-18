@@ -1,5 +1,6 @@
 <script>
 	import { contextmenu } from '$lib/stores/contextmenu';
+	import IconDropMenu from '../icons/IconDropMenu.svelte';
 
 	export let rows;
 	export let data;
@@ -35,6 +36,11 @@
 							<td>—</td>
 						{/if}
 					{/each}
+					<td on:click={(e) => contextmenu.open(e, d)}>
+						<div class="inner">
+							<IconDropMenu size="16px" />
+						</div>
+					</td>
 				</tr>
 			{/each}
 		</tbody>

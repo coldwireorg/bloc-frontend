@@ -33,7 +33,12 @@
       <IconRename color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Rename
     </MenuOption>
   {/if} -->
-	<MenuOption on:click={() => {}}>
+	<MenuOption
+		on:click={() => {
+			files.fav($contextmenu.file.accessId, !$contextmenu.file.favorite);
+			contextmenu.close();
+		}}
+	>
 		{#if $contextmenu.file.favorite}
 			<IconUnstar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Unstar
 		{:else}
@@ -55,11 +60,20 @@
 			<div class="active blue" />
 		{/if}
 	</MenuOption>
-	<MenuOption on:click={() => {}}>
+	<MenuOption
+		on:click={() => {
+			contextmenu.close();
+		}}
+	>
 		<IconDownload color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Download
 	</MenuOption>
 	{#if $contextmenu.file.accessState == 'PRIVATE'}
-		<MenuOption on:click={() => files.rem($contextmenu.file.accessId)}>
+		<MenuOption
+			on:click={() => {
+				files.rem($contextmenu.file.accessId);
+				contextmenu.close();
+			}}
+		>
 			<IconDelete color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Delete
 		</MenuOption>
 	{/if}

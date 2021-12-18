@@ -16,11 +16,21 @@ const createFilesStore = () => {
 		});
 	}
 
+	function fav(accessId, fav) {
+		update((state) => {
+			let a = state.findIndex((f) => f.accessId == accessId);
+			let arr = state;
+			arr[a].favorite = fav;
+			return arr;
+		});
+	}
+
 	return {
 		subscribe,
 		set,
 		add,
-		rem
+		rem,
+		fav
 	};
 };
 
