@@ -11,7 +11,7 @@
 <div class="auth">
 	<slot />
 	<div class="auth-bg">
-		<a href="https://www.artstation.com/engstrom" target="_blank">Art by Robin Engström</a>
+		<a href="https://www.artstation.com/engstrom" target="_blank">Art by Robin Engström {import.meta.env.VITE_API_BASE}</a>
 	</div>
 </div>
 
