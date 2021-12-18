@@ -27,6 +27,16 @@
 		}
 	];
 
+	export let contextmenu;
+	export let contextmenux;
+	export let contextmenuy;
+
+	function toggleCtxMenu(e) {
+		contextmenu = !contextmenu;
+		contextmenux = e.clientX;
+		contextmenuy = e.clientY;
+	}
+
 	let favorites = files.filter((f) => f.favorite);
 </script>
 
@@ -39,6 +49,7 @@
 					fileName={favorite.fileName}
 					lastEdit={dateTodate(favorite.lastEdit)}
 					shared={favorite.sharedTo}
+					on:click={(e) => toggleCtxMenu(e)}
 				/>
 			{/each}
 		</div>
@@ -47,22 +58,13 @@
 
 <section>
 	<h2>Files</h2>
-	<FileTable
-		{rows}
-		data={files}
-		let:value
-		let:row
-		let:favorite
-		on:click={(accessId) => alert(accessId)}
-	>
+	<FileTable {rows} data={files} let:value let:row let:favorite>
 		{#if row === 'fileName'}
-			<div class="file-name">
-				<FileIcon fileName={value} />
-				{value}
-				{#if favorite}
-					<IconStarFill color="var(--complementary-white-25)" size="18px" />
-				{/if}
-			</div>
+			<FileIcon fileName={value} />
+			{value}
+			{#if favorite}
+				<IconStarFill color="var(--complementary-white-25)" size="18px" />
+			{/if}
 		{:else if row === 'fileSize'}
 			{bitsToSize(value)}
 		{:else if row === 'lastEdit'}
@@ -79,12 +81,6 @@
 	section {
 		margin-top: 32px;
 	}
-	.file-name {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
-
 	.favorite-list {
 		display: inline-flex;
 		width: calc(100% + 32px);

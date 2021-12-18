@@ -11,13 +11,22 @@
 <script>
 	import Nav from './_nav.svelte';
 	import TopBar from './_topBar.svelte';
+	import Contextmenu from './_contextmenu.svelte';
+
+	let ctxIsOpen = false;
+	let ctxX = 0;
+	let ctxY = 0;
+
+  function onMessage(event) {
+    
+  }
 </script>
 
 <Nav />
 
 <div class="content">
 	<TopBar />
-	<slot />
+	<Contextmenu open={ctxIsOpen} x={ctxX} y={ctxY} />
 </div>
 
 <style>

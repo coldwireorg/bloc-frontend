@@ -18,14 +18,16 @@
 				<tr>
 					{#each Object.entries(rows) as r}
 						{#if Object.keys(d).includes(r[0])}
-							<td
-								><slot
-									fileId={d.fileId}
-									accessId={d.accessId}
-									favorite={d.favorite}
-									value={d[r[0]]}
-									row={r[0]}
-								/></td
+							<td>
+								<div class="inner">
+									<slot
+										fileId={d.fileId}
+										accessId={d.accessId}
+										favorite={d.favorite}
+										value={d[r[0]]}
+										row={r[0]}
+									/>
+								</div></td
 							>
 						{:else}
 							<td>—</td>
@@ -67,6 +69,12 @@
 	table td {
 		font-size: 12px;
 		height: 54px;
+	}
+
+	table td .inner {
+		display: flex;
+		align-items: center;
+		gap: 8px;
 	}
 
 	@media (max-width: 800px) {
