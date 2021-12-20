@@ -2,15 +2,21 @@
 	import { fade } from 'svelte/transition';
 
 	import { notifications } from '$lib/stores/notifications';
+	import { loaders } from '$lib/stores/loaders';
 
 	import IconClose from '../icons/IconClose.svelte';
 
+	import NotificationLoading from './NotificationLoading.svelte';
+
 	export let id;
+	export let type;
 </script>
 
 <div class="notif" transition:fade={{ duration: 200 }}>
 	<div class="content">
-		<slot />
+		{#if type === 'loader'}
+			<NotificationLoading progress={$loaders[$loaders.findIndex((n) => n.id === id)].progress} />
+		{/if}
 	</div>
 	<i on:click={() => notifications.del(id)} class="close"><IconClose /></i>
 </div>

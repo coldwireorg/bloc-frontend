@@ -13,46 +13,97 @@
 	import LL from '$lib/i18n/i18n-svelte';
 
 	import TextField from '$lib/components/TextField.svelte';
+	import PasswordField from '$lib/components/PasswordField.svelte';
 	import Button from '$lib/components/Button.svelte';
+	import { goto } from '$app/navigation';
 
-	let err;
 	export let action;
+	let err;
 
 	let username;
 	let password;
 	let repassword;
 
-	function auth() {
-		$session.user = {
-			username: 'monoko'
-		};
+	async function auth() {
+		if (!username || !password) {
+			err = 'Please, input a  valid username and password';
+			return;
+		}
 
-		$session.quota = {
-			total: 2000000,
-			max: 10000000
-		};
+		if (action == 'register' && password != repassword) {
+			err = 'Password does not match!';
+			return;
+		}
+
+		if (username.length < 3) {
+			err = 'Please, enter a valid username!';
+			return;
+		}
+
+		if (password.length < 8) {
+			err = 'Password is too small (8 characters minimum)';
+			return;
+		}
+
+		const res = await fetch(`${import.meta.env.VITE_API_BASE}/user/${action}`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				username: username,
+				password: password
+			})
+		});
+		const json = await res.json();
+
+		if (res.status === 404) {
+			err = 'User not found';
+		}
+
+		if (action == 'register' && json.code === 'ERROR_AUTH_EXIST') {
+			err = 'User already exist';
+		}
+
+		if (json.code === 'ERROR_AUTH_PASSWORD') {
+			err = 'Wrong password';
+		}
+
+		if (json.code === 'SUCCESS') {
+			$session.user = {
+				username: json.data.username
+			};
+
+			$session.quota = {
+				total: json.data.quota.total,
+				max: json.data.quota.max
+			};
+
+			localStorage.setItem('quotaMax', json.data.quota.max);
+			localStorage.setItem('quotaTotal', json.data.quota.total);
+
+			goto('/app/files/');
+		}
 	}
 </script>
 
 <div class="auth-form">
-	<form class="form" onsubmit="return false">
+	<form class="form" on:submit|preventDefault={() => auth()}>
 		<img src="/img/logo-full.svg" alt="BLOC" />
 		{#if err}
 			<div class="error">
 				<p>{err}</p>
 			</div>
 		{/if}
-		<TextField bind:value={username} type="text" placeholder={$LL.AUTH_FIELD_USERNAME()} />
-		<TextField bind:value={password} type="password" placeholder={$LL.AUTH_FIELD_PASSWORD()} />
+		<TextField bind:value={username} placeholder={$LL.AUTH_FIELD_USERNAME()} />
+		<PasswordField bind:value={password} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{#if action == 'register'}
-			<TextField bind:value={repassword} type="password" placeholder={$LL.AUTH_FIELD_PASSWORD()} />
+			<PasswordField bind:value={repassword} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{/if}
 		<div class="submit">
-			<Button on:click={() => auth()} on:submit={() => auth()}
+			<Button on:click={() => auth(username, password)} on:submit={() => auth(username, password)}
 				>{action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}</Button
 			>
 			<p>
-				{action == 'login' ? $LL.AUTH_TEXT_CREATE_ACCOUNT() : $LL.AUTH_TEXT_ALREADY_HAVE_ACCOUNT()}
+				{action == 'login' ? $LL.AUTH_TEXT_NO_ACCOUNT() : $LL.AUTH_TEXT_ALREADY_HAVE_ACCOUNT()}
 				<a sveltekit:prefetch href={action == 'login' ? '/auth/register' : '/auth/login'}
 					>{action == 'login' ? $LL.AUTH_TEXT_CREATE_ACCOUNT() : $LL.AUTH_TEXT_LOGIN()}</a
 				>!
@@ -111,7 +162,7 @@
 		box-sizing: border-box;
 		border-radius: 8px;
 		font-size: 12px;
-		padding: 8px 16px;
+		padding: 0px 16px;
 	}
 
 	@media only screen and (max-width: 1000px) {

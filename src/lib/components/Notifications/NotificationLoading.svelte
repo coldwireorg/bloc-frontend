@@ -1,7 +1,6 @@
 <script>
 	import ProgressBar from '../ProgressBar.svelte';
 
-	export let id;
 	export let text;
 	export let progress;
 </script>

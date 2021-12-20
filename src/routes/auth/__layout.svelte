@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ session }) {
-		if (session.user) {
+		if (session.user && session.authenticated) {
 			return { redirect: '/app/files', status: 302 };
 		} else {
 			return {};
@@ -12,7 +12,7 @@
 	<slot />
 	<div class="auth-bg">
 		<a href="https://www.artstation.com/engstrom" target="_blank"
-			>Art by Robin Engström {import.meta.env.VITE_API_BASE}</a
+			>Art by Robin Engström</a
 		>
 	</div>
 </div>
