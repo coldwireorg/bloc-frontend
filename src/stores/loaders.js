@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { randomId } from '$lib/utils/generators';
+import { randomId } from '@lib/utils/generators';
 
 const createLoadersStore = () => {
 	const { subscribe, update } = writable([]);
@@ -20,6 +20,8 @@ const createLoadersStore = () => {
 		if (timeout != 0) {
 			setTimeout(() => del(id), timeout);
 		}
+
+    return id
 	}
 
 	function del(id) {

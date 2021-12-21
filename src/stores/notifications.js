@@ -1,27 +1,29 @@
 import { writable } from 'svelte/store';
-import { randomId } from '$lib/utils/generators';
+import { randomId } from '@lib/Utils/generators';
 
 const createNotificationsStore = () => {
 	const notifications = writable([]);
 	const { subscribe, update } = notifications;
 
-	const create = (timeout, data) => {
-		let id = randomId();
-		console.log(id);
+	const create = (timeout, type, data, id) => {
 
+		let nid = id ? id : randomId();
 		update((state) => {
 			return [
 				...state,
 				{
-					id: id,
+					id: nid,
+          type: type,
 					data: data
 				}
 			];
 		});
 
 		if (timeout != 0) {
-			setTimeout(() => del(id), timeout);
+			setTimeout(() => del(nid), timeout);
 		}
+
+    return id
 	};
 
 	const del = (id) => {

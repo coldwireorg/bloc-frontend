@@ -9,12 +9,14 @@
 </script>
 
 <script>
-	import { session } from '$app/stores';
-	import LL from '$lib/i18n/i18n-svelte';
+  import { request } from '@lib/Api'
 
-	import TextField from '$lib/components/TextField.svelte';
-	import PasswordField from '$lib/components/PasswordField.svelte';
-	import Button from '$lib/components/Button.svelte';
+	import { session } from '$app/stores';
+	import LL from '@lib/Translations/i18n-svelte';
+
+	import TextField from '@lib/Components/TextField.svelte';
+	import PasswordField from '@lib/Components/PasswordField.svelte';
+	import Button from '@lib/Components/Button.svelte';
 	import { goto } from '$app/navigation';
 
 	export let action;
@@ -45,26 +47,19 @@
 			return;
 		}
 
-		const res = await fetch(`${import.meta.env.VITE_API_BASE}/user/${action}`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				username: username,
-				password: password
-			})
-		});
-		const json = await res.json();
+    const json = await request(action, {
+      username: username,
+      password: password
+    })
 
-		if (res.status === 404) {
-			err = 'User not found';
-		}
-
-		if (action == 'register' && json.code === 'ERROR_AUTH_EXIST') {
+		if (json.code === 'ERROR_AUTH_EXIST') {
 			err = 'User already exist';
+      return
 		}
 
 		if (json.code === 'ERROR_AUTH_PASSWORD') {
 			err = 'Wrong password';
+      return
 		}
 
 		if (json.code === 'SUCCESS') {
@@ -72,16 +67,10 @@
 				username: json.data.username
 			};
 
-			$session.quota = {
-				total: json.data.quota.total,
-				max: json.data.quota.max
-			};
-
-			localStorage.setItem('quotaMax', json.data.quota.max);
-			localStorage.setItem('quotaTotal', json.data.quota.total);
-
 			goto('/app/files/');
 		}
+
+    err = 'unknown error...'
 	}
 </script>
 

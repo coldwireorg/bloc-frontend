@@ -1,18 +1,8 @@
-<script context="module">
-	export async function load({ session }) {
-		if (session.user && session.authenticated) {
-			return { redirect: '/app/files', status: 302 };
-		} else {
-			return {};
-		}
-	}
-</script>
-
 <div class="auth">
 	<slot />
 	<div class="auth-bg">
-		<a href="https://www.artstation.com/engstrom" target="_blank"
-			>Art by Robin Engström</a
+		<a href="https://twitter.com/vermileonhart" target="_blank"
+			>Art by Vermileon</a
 		>
 	</div>
 </div>
@@ -24,7 +14,7 @@
 		top: 0;
 		bottom: 0;
 		width: 50%;
-		background: no-repeat center url(/img/background.jpg);
+		background: no-repeat center url(/img/bg.png);
 		background-size: cover;
 	}
 
