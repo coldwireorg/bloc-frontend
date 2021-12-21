@@ -12,9 +12,10 @@ const config = {
     vite: {
       resolve: {
         alias: {
-          // these are the aliases and paths to them
-          '@components': path.resolve('./src/lib/Components'),
           '@lib': path.resolve('./src/lib'),
+          '@components': path.resolve('./src/lib/Components'),
+          '@templates': path.resolve('./src/lib/Templates'),
+          '@icons': path.resolve('./src/lib/Icons'),
           '@utils': path.resolve('./src/lib/Utils'),
           '@stores': path.resolve('./src/stores')
         }

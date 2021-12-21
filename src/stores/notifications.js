@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { randomId } from '@lib/Utils/generators';
+import { randomId } from '@utils/generators';
 
 const createNotificationsStore = () => {
 	const notifications = writable([]);

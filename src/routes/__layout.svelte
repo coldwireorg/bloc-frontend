@@ -23,7 +23,10 @@
           goto('/auth/login')
         }
       } else {
-        goto('/app/files')
+        console.log($page.path)
+        if (!$page.path.startsWith('/files') || $page.path == '/files') {
+          goto('/app/files')
+        }
       }
     })
   }

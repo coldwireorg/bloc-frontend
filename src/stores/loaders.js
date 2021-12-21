@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { randomId } from '@lib/utils/generators';
+import { randomId } from '@utils/generators';
 
 const createLoadersStore = () => {
 	const { subscribe, update } = writable([]);
