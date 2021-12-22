@@ -22,12 +22,12 @@ const fileTypes = [
 		icon: 'table'
 	},
 	{
-		exts: ['.jpg'],
+		exts: ['.jpg', '.png', '.jpeg'],
 		color: 'violet',
 		icon: 'image'
 	},
 	{
-		exts: ['.zip', '.bz2'],
+		exts: ['.zip', '.bz2', '.tar.gz', '.tar.xz', '.tar'],
 		color: 'yellow',
 		icon: 'image'
 	}

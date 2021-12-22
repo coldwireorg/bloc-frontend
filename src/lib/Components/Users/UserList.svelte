@@ -12,7 +12,7 @@
 		{/each}
 	{:else}
 		<User
-			background="var(--complementary-gray)"
+			background="var(--complementary-white-25)"
 			username={users.length - 2}
 			shared={true}
 			{border}

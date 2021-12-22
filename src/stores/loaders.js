@@ -21,7 +21,7 @@ const createLoadersStore = () => {
 			setTimeout(() => del(id), timeout);
 		}
 
-    return id
+		return id;
 	}
 
 	function del(id) {

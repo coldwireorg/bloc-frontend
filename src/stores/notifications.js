@@ -6,14 +6,13 @@ const createNotificationsStore = () => {
 	const { subscribe, update } = notifications;
 
 	const create = (timeout, type, data, id) => {
-
 		let nid = id ? id : randomId();
 		update((state) => {
 			return [
 				...state,
 				{
 					id: nid,
-          type: type,
+					type: type,
 					data: data
 				}
 			];
@@ -23,11 +22,10 @@ const createNotificationsStore = () => {
 			setTimeout(() => del(nid), timeout);
 		}
 
-    return id
+		return id;
 	};
 
 	const del = (id) => {
-		console.log(id);
 		update((state) => {
 			let arr = state;
 			let index = arr.findIndex((n) => n.id === id);

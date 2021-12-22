@@ -10,12 +10,26 @@
 
 	export let id;
 	export let type;
+
+  let data;
+
+	notifications.subscribe(notif => {
+    let index = notif.findIndex((n) => n.id === id)
+    if (index != -1) {
+      data = notif[index].data
+    } else {
+      data = {}
+    }
+  })
 </script>
 
 <div class="notif" transition:fade={{ duration: 200 }}>
 	<div class="content">
 		{#if type === 'loader'}
-			<NotificationLoading progress={$loaders[$loaders.findIndex((n) => n.id === id)].progress} />
+			<NotificationLoading
+				text={data.filename ? data.filename : 'undefined'}
+				progress={$loaders[$loaders.findIndex((n) => n.id == id)].progress}
+			/>
 		{/if}
 	</div>
 	<i on:click={() => notifications.del(id)} class="close"><IconClose /></i>

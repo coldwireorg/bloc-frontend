@@ -2,6 +2,7 @@
 	import LL from '@lib/Translations/i18n-svelte';
 	import { bitsToSize, dateTodate } from '@utils/converters';
 
+  import { session } from '$app/stores';
 	import { contextmenu } from '@stores/contextmenu';
 	import { files as fileStore, favorites } from '@stores/files';
 
@@ -37,26 +38,28 @@
 {/if}
 
 {#if $fileStore.length > 0}
-  <section>
-    <h2>Files</h2>
-    <FileTable {rows} data={$fileStore} let:value let:row let:favorite>
-      {#if row === 'fileName'}
-        <FileIcon fileName={value} />
-        {value}
-        {#if favorite}
-          <IconStarFill color="var(--complementary-white-25)" size="18px" />
+	<section>
+		<h2>Files</h2>
+		<FileTable {rows} data={$fileStore} let:value let:row let:favorite>
+			{#if row === 'fileName'}
+				<FileIcon fileName={value} />
+				{value}
+				{#if favorite}
+					<IconStarFill color="var(--complementary-white-25)" size="18px" />
+				{/if}
+			{:else if row === 'fileSize'}
+				{bitsToSize(value)}
+			{:else if row === 'lastEdit'}
+				{dateTodate(value)}
+			{:else if row === 'sharedTo'}
+        {#if value != $session.user.username}
+				  <UserList users={value} />
         {/if}
-      {:else if row === 'fileSize'}
-        {bitsToSize(value)}
-      {:else if row === 'lastEdit'}
-        {dateTodate(value)}
-      {:else if row === 'sharedTo'}
-        <UserList users={value} />
-      {:else}
-        {value}
-      {/if}
-    </FileTable>
-  </section>
+			{:else}
+				{value}
+			{/if}
+		</FileTable>
+	</section>
 {/if}
 
 <style>

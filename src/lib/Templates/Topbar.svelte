@@ -6,6 +6,13 @@
 	import Button from '@components/Button.svelte';
 	import TextField from '@components/TextField.svelte';
 	import IconUpload from '@components/icons/IconUpload.svelte';
+
+	import { upload } from '@utils/uploader';
+
+	let file, fileinput;
+	const onFileSelected = (e) => {
+		upload(e.target.files[0]);
+	};
 </script>
 
 <div class="top-bar">
@@ -23,10 +30,18 @@
 	<div class="right">
 		{#if $page.path != '/app/settings'}
 			<TextField placeholder={LL.APP_FIELD_SEARCH_BAR()} />
-			<Button
+			<Button on:click={() => fileinput.click()}
 				>{LL.APP_BUTTON_UPLOAD()}
 				<IconUpload size="18px" color="var(--complementary-white)" /></Button
 			>
+			<input
+				bind:value={file}
+				type="file"
+				id="fileupload"
+				style="display:none;"
+				on:change={(e) => onFileSelected(e)}
+				bind:this={fileinput}
+			/>
 		{/if}
 	</div>
 </div>

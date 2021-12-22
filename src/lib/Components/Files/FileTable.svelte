@@ -14,7 +14,7 @@
 					<th>{title}</th>
 				{/each}
 			</tr>
-		</thead>  
+		</thead>
 		<br />
 		<tbody>
 			{#each data as d, i}

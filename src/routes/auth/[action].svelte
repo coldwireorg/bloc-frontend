@@ -9,7 +9,7 @@
 </script>
 
 <script>
-  import { request } from '@lib/Api'
+	import { request } from '@lib/Api';
 
 	import { session } from '$app/stores';
 	import LL from '@lib/Translations/i18n-svelte';
@@ -47,19 +47,19 @@
 			return;
 		}
 
-    const json = await request(action, {
-      username: username,
-      password: password
-    })
+		const json = await request(action, {
+			username: username,
+			password: password
+		});
 
 		if (json.code === 'ERROR_AUTH_EXIST') {
 			err = 'User already exist';
-      return
+			return;
 		}
 
 		if (json.code === 'ERROR_AUTH_PASSWORD') {
 			err = 'Wrong password';
-      return
+			return;
 		}
 
 		if (json.code === 'SUCCESS') {
@@ -70,7 +70,7 @@
 			goto('/app/files/');
 		}
 
-    err = 'unknown error...'
+		err = 'unknown error...';
 	}
 </script>
 

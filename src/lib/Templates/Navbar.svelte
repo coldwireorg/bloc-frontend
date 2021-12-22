@@ -4,7 +4,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
-  import { quota } from "@stores/quota";
+	import { quota } from '@stores/quota';
 
 	import { bitsToSize } from '@utils/converters';
 

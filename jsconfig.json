@@ -2,18 +2,18 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-      "@lib": ["./src/lib"],
-      "@lib/*": ["./src/lib/*"],
-      "@components": ["./src/lib/Components"],
-      "@components/*": ["./src/lib/Components/*"],
-      "@templates": ["./src/lib/Templates"],
-      "@templates/*": ["./src/lib/Templates/*"],
-      "@icons": ["./src/lib/Icons"],
-      "@icons/*": ["./src/lib/Icons/*"],
-      "@utils": ["./src/lib/Utils"],
-      "@utils/*": ["./src/lib/Utils/*"],
-      "@stores": ["./src/stores"],
-      "@stores/*": ["./src/stores/*"]
+			"@lib": ["./src/lib"],
+			"@lib/*": ["./src/lib/*"],
+			"@components": ["./src/lib/Components"],
+			"@components/*": ["./src/lib/Components/*"],
+			"@templates": ["./src/lib/Templates"],
+			"@templates/*": ["./src/lib/Templates/*"],
+			"@icons": ["./src/lib/Icons"],
+			"@icons/*": ["./src/lib/Icons/*"],
+			"@utils": ["./src/lib/Utils"],
+			"@utils/*": ["./src/lib/Utils/*"],
+			"@stores": ["./src/stores"],
+			"@stores/*": ["./src/stores/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.svelte"]

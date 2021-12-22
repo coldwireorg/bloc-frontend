@@ -1,57 +1,53 @@
 <script>
- 	import { browser } from '$app/env';
-  import { request } from "@lib/Api";
+	import { browser } from '$app/env';
+	import { request } from '@lib/Api';
 
-  import { files } from "@stores/files";
-  import { notifications } from "@stores/notifications";
-  import { quota as quotaStore } from "@stores/quota";
+	import { files } from '@stores/files';
+	import { notifications } from '@stores/notifications';
+	import { contextmenu } from '@stores/contextmenu';
+	import { quota as quotaStore } from '@stores/quota';
 
-  import Navbar from "@templates/Navbar.svelte";
-  import TopBar from '@templates/Topbar.svelte';
-  import FilesMenu from '@templates/FilesMenu.svelte';
+	import Navbar from '@templates/Navbar.svelte';
+	import TopBar from '@templates/Topbar.svelte';
+	import FilesMenu from '@templates/FilesMenu.svelte';
 
-  import Notification from '@components/Notifications/Notification.svelte';
-  import NotificationLoading from '@components/Notifications/NotificationLoading.svelte';
+	import Notification from '@components/Notifications/Notification.svelte';
 
-  async function init() {
-    const filesList = await request('listFiles')
-    if (filesList.data.files) {
-      $files = filesList.data.files
-    }
+	async function init() {
+		const filesList = await request('listFiles');
+		if (filesList.data.files) {
+			$files = filesList.data.files;
+		}
 
-    const quota = await request('getQuota')
-    $quotaStore = {
-      max: quota.data.quota.max,
-      total: quota.data.quota.total
-    }
-  }
+		const quota = await request('getQuota');
+		$quotaStore = {
+			max: quota.data.quota.max,
+			total: quota.data.quota.total
+		};
+	}
 
+	if (browser) {
+		init();
+	}
 
-  if (browser) {
-    init()
-  }
-
-  notifications.subscribe(console.log);
-	notifications.create(0, {});
+	notifications.subscribe((d) => console.log(d));
 </script>
 
 <FilesMenu />
 <div class="notifications">
 	{#each $notifications as notification}
-		<Notification id={notification.id} data={notification.data}>
-			<NotificationLoading text="Uploading file.jpg..." progress="20" />
-		</Notification>
+		<Notification id={notification.id} data={notification.data} type={notification.type} />
 	{/each}
 </div>
 
-<Navbar/>
-<div class="content">
-  <TopBar/>
-  <slot/>
+<Navbar />
+<div class="content" on:click={() => contextmenu.close()}>
+	<TopBar />
+	<slot />
 </div>
 
 <style>
-  .content {
+	.content {
 		position: absolute;
 		top: 0px;
 		bottom: 0;
@@ -59,7 +55,6 @@
 		right: 0;
 		padding: 32px;
 	}
-
 
 	.notifications {
 		position: absolute;

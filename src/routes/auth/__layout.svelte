@@ -1,9 +1,7 @@
 <div class="auth">
 	<slot />
 	<div class="auth-bg">
-		<a href="https://twitter.com/vermileonhart" target="_blank"
-			>Art by Vermileon</a
-		>
+		<a href="https://twitter.com/vermileonhart" target="_blank">Art by Vermileon</a>
 	</div>
 </div>
 

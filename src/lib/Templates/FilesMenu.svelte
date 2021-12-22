@@ -1,4 +1,6 @@
 <script>
+  import { request } from '@lib/Api';
+
 	import { contextmenu } from '@stores/contextmenu';
 	import { files } from '@stores/files';
 
@@ -24,6 +26,12 @@
 			moveToSub = false;
 		}
 	});
+
+  function deleteFile(id) {
+    request('deleteFile', {
+      
+    })
+  }
 </script>
 
 <Menu open={$contextmenu.open} x={$contextmenu.x - 148} y={$contextmenu.y}>

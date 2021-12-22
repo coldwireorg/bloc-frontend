@@ -1,5 +1,5 @@
 <script>
-	import ProgressBar from '../ProgressBar.svelte';
+	import ProgressBar from '@components/ProgressBar.svelte';
 
 	export let text;
 	export let progress;
