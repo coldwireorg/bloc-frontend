@@ -2,7 +2,7 @@ import { getFileExtension } from './converters';
 
 const fileTypes = [
 	{
-		exts: ['.docx', '.doc'],
+		exts: ['.docx', '.doc', '.md', '.txt'],
 		color: 'blue',
 		icon: 'text'
 	},

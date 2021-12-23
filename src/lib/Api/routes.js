@@ -30,7 +30,7 @@ export const routes = {
 	deleteFile: {
 		route: 'file',
 		method: 'DELETE',
-		headers: {}
+		headers: { 'Content-Type': 'application/json' }
 	},
 	downloadFile: {
 		route: 'file/download',
@@ -41,6 +41,13 @@ export const routes = {
 		route: 'file',
 		method: 'GET',
 		headers: {}
+	},
+
+  // Favorites
+  updateFavorite: {
+		route: 'favorite',
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' }
 	},
 
 	// Shares

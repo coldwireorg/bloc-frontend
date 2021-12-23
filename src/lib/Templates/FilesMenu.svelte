@@ -1,5 +1,6 @@
 <script>
   import { request } from '@lib/Api';
+  import { download as fileDownload } from '@utils/downloader';
 
 	import { contextmenu } from '@stores/contextmenu';
 	import { files } from '@stores/files';
@@ -27,10 +28,39 @@
 		}
 	});
 
-  function deleteFile(id) {
-    request('deleteFile', {
-      
+  async function deleteFile() {
+    let res = await request('deleteFile', {
+      accessId: $contextmenu.file.accessId,
+      fileId: $contextmenu.file.fileId
     })
+
+    if (res.code != 'SUCCESS') {
+      console.log(':c')
+    } else {
+      files.rem($contextmenu.file.accessId)
+    }
+
+    contextmenu.close()
+  }
+
+  async function updateFavorite() {
+    let res = await request('updateFavorite', {
+      accessId: $contextmenu.file.accessId,
+      favorite: !$contextmenu.file.favorite
+    })
+
+    if (res.code != 'SUCCESS') {
+      console.log(':c')
+    } else {
+      files.fav($contextmenu.file.accessId, !$contextmenu.file.favorite)
+    }
+
+    contextmenu.close()
+  }
+
+  function download() {
+    fileDownload($contextmenu.file.accessId, $contextmenu.file.fileName)
+    contextmenu.close()
   }
 </script>
 
@@ -42,10 +72,7 @@
     </MenuOption>
   {/if} -->
 	<MenuOption
-		on:click={() => {
-			files.fav($contextmenu.file.accessId, !$contextmenu.file.favorite);
-			contextmenu.close();
-		}}
+		on:click={() => updateFavorite()}
 	>
 		{#if $contextmenu.file.favorite}
 			<IconUnstar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Unstar
@@ -69,18 +96,13 @@
 		{/if}
 	</MenuOption>
 	<MenuOption
-		on:click={() => {
-			contextmenu.close();
-		}}
+		on:click={() => download()}
 	>
 		<IconDownload color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Download
 	</MenuOption>
 	{#if $contextmenu.file.accessState == 'PRIVATE'}
 		<MenuOption
-			on:click={() => {
-				files.rem($contextmenu.file.accessId);
-				contextmenu.close();
-			}}
+			on:click={() => deleteFile()}
 		>
 			<IconDelete color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Delete
 		</MenuOption>
