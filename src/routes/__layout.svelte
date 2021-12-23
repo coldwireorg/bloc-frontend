@@ -33,3 +33,32 @@
 </script>
 
 <slot />
+
+<style>
+:root {
+	--primary-green: #009639;
+	--primary-green-25: rgba(0, 143, 100, 0.25);
+	--primary-green-1: rgba(0, 143, 100, 0.1);
+	--primary-blue: #0061ff;
+	--primary-blue-25: rgba(0, 97, 255, 0.25);
+	--primary-blue-1: rgba(0, 97, 255, 0.1);
+
+	--secondary-brown: #807773;
+	--secondary-organge: #d9730d;
+	--secondary-yellow: #dfab01;
+	--secondary-green: #0f7b6c;
+	--secondary-blue: #0b6e99;
+	--secondary-violet: #6940a5;
+	--secondary-magenta: #ad1a72;
+	--secondary-red: #e03e3e;
+	--secondary-gray: #9b9a97;
+
+	--complementary-gray-1: #0d1117;
+	--complementary-gray-2: #161b22;
+	--complementary-gray-3: #30363d;
+	--complementary-white-5: rgba(240, 246, 252, 0.05);
+	--complementary-white-25: rgba(240, 246, 252, 0.25);
+	--complementary-white-50: rgba(240, 246, 252, 0.5);
+	--complementary-white: #f0f6fc;
+}
+</style>
