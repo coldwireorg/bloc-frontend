@@ -1,4 +1,6 @@
 <script>
+  import { session } from '$app/stores'
+
 	import { parseFile } from '@utils/fileTypes';
 
 	import FileIcon from '../Files/FileIcon.svelte';
@@ -26,7 +28,9 @@
 			<span class="name"><FileIcon {fileName} /> {fileName}</span>
 			<span class="edited">{lastEdit}</span>
 		</div>
-		<UserList users={shared} border="var(--complementary-gray-3)" />
+    {#if shared != $session.user.username}
+      <UserList users={shared} border="var(--complementary-gray-3)" />
+    {/if}
 	</div>
 </div>
 
