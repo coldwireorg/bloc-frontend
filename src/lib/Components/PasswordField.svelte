@@ -3,7 +3,7 @@
 	export let value;
 </script>
 
-<input class="input" type="password" bind:value {placeholder} />
+<input on:submit class="input" type="password" bind:value {placeholder} />
 
 <style>
 	.input {

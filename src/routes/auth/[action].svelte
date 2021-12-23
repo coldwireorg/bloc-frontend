@@ -18,6 +18,7 @@
 	import PasswordField from '@lib/Components/PasswordField.svelte';
 	import Button from '@lib/Components/Button.svelte';
 	import { goto } from '$app/navigation';
+import IconLock from '@lib/Icons/IconLock.svelte';
 
 	export let action;
 	let err;
@@ -76,21 +77,22 @@
 
 <div class="auth-form">
 	<form class="form" on:submit|preventDefault={() => auth()}>
-		<img src="/img/logo-full.svg" alt="BLOC" />
+    <div class="top">
+      <IconLock size="16px" color="var(--primary-green)" /> Make sure yout connection is safe
+    </div>
+    <h1>{action.charAt(0).toUpperCase() + action.slice(1)}</h1>
 		{#if err}
 			<div class="error">
 				<p>{err}</p>
 			</div>
 		{/if}
-		<TextField bind:value={username} placeholder={$LL.AUTH_FIELD_USERNAME()} />
+		<TextField bind bind:value={username} placeholder={$LL.AUTH_FIELD_USERNAME()} />
 		<PasswordField bind:value={password} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{#if action == 'register'}
 			<PasswordField bind:value={repassword} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{/if}
 		<div class="submit">
-			<Button on:click={() => auth(username, password)} on:submit={() => auth(username, password)}
-				>{action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}</Button
-			>
+			<input class="btn" type="submit" on:click={() => auth(username, password)} on:submit={() => auth(username, password)} value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}>
 			<p>
 				{action == 'login' ? $LL.AUTH_TEXT_NO_ACCOUNT() : $LL.AUTH_TEXT_ALREADY_HAVE_ACCOUNT()}
 				<a sveltekit:prefetch href={action == 'login' ? '/auth/register' : '/auth/login'}
@@ -115,17 +117,36 @@
 	}
 
 	.auth-form .form {
-		max-width: 25%;
+		width: 224px;
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+
+    background-color: var(--complementary-gray-3);
+    padding: 32px;
+    border-radius: 8px;
 	}
 
-	.auth-form .form img {
-		width: 100%;
-		margin-bottom: 15px;
-		user-select: none;
-	}
+  .auth-form .form .top {
+    width: auto;
+    height: 48px;
+    background-color: var(--primary-green-25);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    color: var(--primary-green);
+    font-size: 10px;
+
+    margin: -32px;
+    margin-bottom: 0px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 
 	.auth-form .form .submit {
 		display: flex;
@@ -137,12 +158,12 @@
 		color: var(--complementary-white-50);
 		display: block;
 		margin-top: 15px;
-		font-size: 12px;
+		font-size: 10px;
 	}
 
 	.auth-form .form a {
-		text-decoration: none;
-		color: var(--primary-blue);
+		color: var(--complementary-gray);
+    text-decoration: underline;
 		cursor: pointer;
 	}
 
@@ -158,6 +179,33 @@
 		.auth-form .form {
 			max-width: 50%;
 		}
+	}
+
+  .btn {
+		height: 32px;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+
+		padding: 0px 8px;
+		font-size: 12px;
+		font-weight: 600;
+
+		background-color: var(--primary-blue);
+		border-radius: 8px;
+		border: none;
+
+		color: var(--complementary-white);
+
+		cursor: pointer;
+
+		transition: 0.3s;
+	}
+
+	.btn:hover {
+		opacity: 0.9;
 	}
 
 	@media only screen and (max-width: 900px) {
