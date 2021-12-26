@@ -51,10 +51,10 @@
 					><IconStar color="#F0F6FC40" width="18px" height="18px" />
 					{$LL.APP_NAV_LINK_FAVORITES()}</a
 				>
-				<a href="/app/files/shared/" class:active={$page.path === '/app/shared'}
+				<!-- <a href="/app/files/shared/" class:active={$page.path === '/app/shared'}
 					><IconPeoples color="#F0F6FC40" width="18px" height="18px" />
 					{$LL.APP_NAV_LINK_SHARED()}</a
-				>
+				> -->
 			</div>
 			<div class="more">
 				<div
