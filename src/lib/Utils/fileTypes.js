@@ -36,7 +36,7 @@ const fileTypes = [
 		color: 'blue',
 		icon: 'music'
 	},
-  {
+	{
 		exts: ['.mp4', '.avi'],
 		color: 'orange',
 		icon: 'video'

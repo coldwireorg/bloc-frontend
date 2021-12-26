@@ -17,7 +17,7 @@
 		sharedBy: $LL.APP_TABLE_FILE_SHARED_BY()
 	};
 
-  let shared = $files.filter(f => f.sharedTo != f.sharedBy)
+	let shared = $files.filter((f) => f.sharedTo != f.sharedBy);
 </script>
 
 {#if shared.length > 0}
@@ -35,7 +35,7 @@
 			{:else if row === 'lastEdit'}
 				{dateTodate(value)}
 			{:else if row === 'sharedBy'}
-        <User username={value} size="24" /> {value}
+				<User username={value} size="24" /> {value}
 			{:else}
 				{value}
 			{/if}

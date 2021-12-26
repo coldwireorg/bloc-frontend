@@ -11,12 +11,12 @@
 	import FileIcon from '@components/Files/FileIcon.svelte';
 	import IconStarFill from '@icons/IconStarFill.svelte';
 
-  import NoFiles from '@templates/NoFiles.svelte';
+	import NoFiles from '@templates/NoFiles.svelte';
 
 	const rows = {
 		fileName: $LL.APP_TABLE_FILE_NAME(),
 		fileSize: $LL.APP_TABLE_FILE_SIZE(),
-		lastEdit: $LL.APP_TABLE_FILE_LASTEDIT(),
+		lastEdit: $LL.APP_TABLE_FILE_LASTEDIT()
 		//sharedTo: $LL.APP_TABLE_FILE_SHARED_WITH()
 	};
 </script>
@@ -51,7 +51,7 @@
 				{bitsToSize(value)}
 			{:else if row === 'lastEdit'}
 				{dateTodate(value)}
-      <!-- {:else if row === 'sharedTo'}
+				<!-- {:else if row === 'sharedTo'}
         {#if value != $session.user.username}
 				  <UserList users={value} />
         {/if} -->
@@ -61,7 +61,7 @@
 		</FileTable>
 	</section>
 {:else}
-  <NoFiles />
+	<NoFiles />
 {/if}
 
 <style>

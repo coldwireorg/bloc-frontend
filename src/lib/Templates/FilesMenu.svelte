@@ -1,6 +1,6 @@
 <script>
-  import { request } from '@lib/Api';
-  import { download as fileDownload } from '@utils/downloader';
+	import { request } from '@lib/Api';
+	import { download as fileDownload } from '@utils/downloader';
 
 	import { contextmenu } from '@stores/contextmenu';
 	import { files } from '@stores/files';
@@ -28,40 +28,40 @@
 		}
 	});
 
-  async function deleteFile() {
-    let res = await request('deleteFile', {
-      accessId: $contextmenu.file.accessId,
-      fileId: $contextmenu.file.fileId
-    })
+	async function deleteFile() {
+		let res = await request('deleteFile', {
+			accessId: $contextmenu.file.accessId,
+			fileId: $contextmenu.file.fileId
+		});
 
-    if (res.code != 'SUCCESS') {
-      console.log(':c')
-    } else {
-      files.rem($contextmenu.file.accessId)
-    }
+		if (res.code != 'SUCCESS') {
+			console.log(':c');
+		} else {
+			files.rem($contextmenu.file.accessId);
+		}
 
-    contextmenu.close()
-  }
+		contextmenu.close();
+	}
 
-  async function updateFavorite() {
-    let res = await request('updateFavorite', {
-      accessId: $contextmenu.file.accessId,
-      favorite: !$contextmenu.file.favorite
-    })
+	async function updateFavorite() {
+		let res = await request('updateFavorite', {
+			accessId: $contextmenu.file.accessId,
+			favorite: !$contextmenu.file.favorite
+		});
 
-    if (res.code != 'SUCCESS') {
-      console.log(':c')
-    } else {
-      files.fav($contextmenu.file.accessId, !$contextmenu.file.favorite)
-    }
+		if (res.code != 'SUCCESS') {
+			console.log(':c');
+		} else {
+			files.fav($contextmenu.file.accessId, !$contextmenu.file.favorite);
+		}
 
-    contextmenu.close()
-  }
+		contextmenu.close();
+	}
 
-  function download() {
-    fileDownload($contextmenu.file.accessId, $contextmenu.file.fileName)
-    contextmenu.close()
-  }
+	function download() {
+		fileDownload($contextmenu.file.accessId, $contextmenu.file.fileName);
+		contextmenu.close();
+	}
 </script>
 
 <Menu open={$contextmenu.open} x={$contextmenu.x - 148} y={$contextmenu.y}>
@@ -71,9 +71,7 @@
       <IconRename color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Rename
     </MenuOption>
   {/if} -->
-	<MenuOption
-		on:click={() => updateFavorite()}
-	>
+	<MenuOption on:click={() => updateFavorite()}>
 		{#if $contextmenu.file.favorite}
 			<IconUnstar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Unstar
 		{:else}
@@ -84,7 +82,7 @@
     <IconMove color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Move to
   </MenuOption> -->
 	<MenuSeparator />
-  <!-- <MenuOption
+	<!-- <MenuOption
 		on:click={() => {
 			shareSub = !shareSub;
 			moveToSub = false;
@@ -95,15 +93,11 @@
 			<div class="active blue" />
 		{/if}
 	</MenuOption> -->
-	<MenuOption
-		on:click={() => download()}
-	>
+	<MenuOption on:click={() => download()}>
 		<IconDownload color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Download
 	</MenuOption>
 	{#if $contextmenu.file.accessState == 'PRIVATE'}
-		<MenuOption
-			on:click={() => deleteFile()}
-		>
+		<MenuOption on:click={() => deleteFile()}>
 			<IconDelete color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Delete
 		</MenuOption>
 	{/if}

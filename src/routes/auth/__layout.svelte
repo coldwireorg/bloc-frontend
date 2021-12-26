@@ -1,28 +1,33 @@
-<div class="background"></div>
+<div class="background" />
 
 <div class="auth">
-  <i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
+	<i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
 	<slot />
-  <a class="artist" href="https://unsplash.com/photos/XM1YUUVXj64" target="_blank">Artwork by @pawel_czerwinski - unsplash.com</a>
+	<a class="artist" href="https://unsplash.com/photos/XM1YUUVXj64" target="_blank"
+		>Artwork by @pawel_czerwinski - unsplash.com</a
+	>
 </div>
 
-
 <style>
-  .background {
-    background: no-repeat center url(/img/background.jpg);
+	.background {
+		background: no-repeat center url(/img/background.jpg);
 		background-size: cover;
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-  }
-  
-	.auth {
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-  }
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
 
-  .auth .logo {
+	.auth {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.auth .logo {
 		position: absolute;
 		top: 24px;
 		left: 32px;
@@ -38,10 +43,11 @@
 
 		color: var(--complementary-white);
 		text-decoration: none;
-    padding: 8px;
-    background-color: var(--complementary-white-25);
-    border-radius: 8px;
+		padding: 8px;
+		background-color: var(--complementary-white-25);
+		border-radius: 8px;
 	}
 
-	@media only screen and (max-width: 900px) {}
+	@media only screen and (max-width: 900px) {
+	}
 </style>

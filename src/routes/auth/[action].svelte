@@ -18,7 +18,7 @@
 	import PasswordField from '@lib/Components/PasswordField.svelte';
 	import Button from '@lib/Components/Button.svelte';
 	import { goto } from '$app/navigation';
-import IconLock from '@lib/Icons/IconLock.svelte';
+	import IconLock from '@lib/Icons/IconLock.svelte';
 
 	export let action;
 	let err;
@@ -53,30 +53,29 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 			password: password
 		});
 
-
-    switch(json.code) {
-      case 'SUCCESS':
-        $session.user = { username: json.data.username };
-        goto('/app/files/');
-        break;
-      case 'ERROR_AUTH_EXIST':
-        err = 'User already exist';
-        break;
-      case 'ERROR_AUTH_PASSWORD':
-        err = 'Wrong password';
-        break;
-      default:
-        err = 'unknown error...';
-    }
+		switch (json.code) {
+			case 'SUCCESS':
+				$session.user = { username: json.data.username };
+				goto('/app/files/');
+				break;
+			case 'ERROR_AUTH_EXIST':
+				err = 'User already exist';
+				break;
+			case 'ERROR_AUTH_PASSWORD':
+				err = 'Wrong password';
+				break;
+			default:
+				err = 'unknown error...';
+		}
 	}
 </script>
 
 <div class="auth-form">
 	<form class="form" on:submit|preventDefault={() => auth()}>
-    <div class="top">
-      <IconLock size="16px" color="var(--primary-green)" /> Make sure your connection is safe
-    </div>
-    <h1>{action.charAt(0).toUpperCase() + action.slice(1)}</h1>
+		<div class="top">
+			<IconLock size="16px" color="var(--primary-green)" /> Make sure your connection is safe
+		</div>
+		<h1>{action.charAt(0).toUpperCase() + action.slice(1)}</h1>
 		{#if err}
 			<div class="error">
 				<p>{err}</p>
@@ -88,7 +87,12 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 			<PasswordField bind:value={repassword} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{/if}
 		<div class="submit">
-			<input class="btn" type="submit" on:click={() => auth(username, password)} value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}>
+			<input
+				class="btn"
+				type="submit"
+				on:click={() => auth(username, password)}
+				value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}
+			/>
 			<p>
 				{action == 'login' ? $LL.AUTH_TEXT_NO_ACCOUNT() : $LL.AUTH_TEXT_ALREADY_HAVE_ACCOUNT()}
 				<a sveltekit:prefetch href={action == 'login' ? '/auth/register' : '/auth/login'}
@@ -118,31 +122,31 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 		flex-direction: column;
 		gap: 16px;
 
-    background-color: var(--complementary-gray-3);
-    padding: 32px;
-    border-radius: 8px;
+		background-color: var(--complementary-gray-3);
+		padding: 32px;
+		border-radius: 8px;
 	}
 
-  .auth-form .form .top {
-    width: auto;
-    height: 48px;
-    background-color: var(--primary-green-25);
+	.auth-form .form .top {
+		width: auto;
+		height: 48px;
+		background-color: var(--primary-green-25);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
 
-    color: var(--primary-green);
-    font-size: 10px;
+		color: var(--primary-green);
+		font-size: 10px;
 
-    margin: -32px;
-    margin-bottom: 0px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+		margin: -32px;
+		margin-bottom: 0px;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
 
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+		padding-left: 32px;
+		padding-right: 32px;
+	}
 
 	.auth-form .form .submit {
 		display: flex;
@@ -159,7 +163,7 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 
 	.auth-form .form a {
 		color: var(--complementary-gray);
-    text-decoration: underline;
+		text-decoration: underline;
 		cursor: pointer;
 	}
 
@@ -177,7 +181,7 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 		}
 	}
 
-  .btn {
+	.btn {
 		height: 32px;
 
 		display: flex;

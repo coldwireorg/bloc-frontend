@@ -43,8 +43,8 @@ export const routes = {
 		headers: {}
 	},
 
-  // Favorites
-  updateFavorite: {
+	// Favorites
+	updateFavorite: {
 		route: 'favorite',
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' }

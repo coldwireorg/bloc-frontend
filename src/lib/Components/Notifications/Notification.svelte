@@ -11,16 +11,16 @@
 	export let id;
 	export let type;
 
-  let data;
+	let data;
 
-	notifications.subscribe(notif => {
-    let index = notif.findIndex((n) => n.id === id)
-    if (index != -1) {
-      data = notif[index].data
-    } else {
-      data = {}
-    }
-  })
+	notifications.subscribe((notif) => {
+		let index = notif.findIndex((n) => n.id === id);
+		if (index != -1) {
+			data = notif[index].data;
+		} else {
+			data = {};
+		}
+	});
 </script>
 
 <div class="notif" transition:fade={{ duration: 200 }}>
