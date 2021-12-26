@@ -7,7 +7,7 @@
 	import FileTable from '@components/Files/FileTable.svelte';
 
 	import FileIcon from '@components/Files/FileIcon.svelte';
-	import IconStarFill from '@components/icons/IconStarFill.svelte';
+	import IconStarFill from '@icons/IconStarFill.svelte';
 
   import NoFiles from '@templates/NoFiles.svelte';
 

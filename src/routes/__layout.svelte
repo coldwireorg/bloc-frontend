@@ -44,7 +44,7 @@
 	--primary-blue-1: rgba(0, 97, 255, 0.1);
 
 	--secondary-brown: #807773;
-	--secondary-organge: #d9730d;
+	--secondary-orange: #d9730d;
 	--secondary-yellow: #dfab01;
 	--secondary-green: #0f7b6c;
 	--secondary-blue: #0b6e99;

@@ -4,7 +4,7 @@
 	import { notifications } from '@stores/notifications';
 	import { loaders } from '@stores/loaders';
 
-	import IconClose from '../icons/IconClose.svelte';
+	import IconClose from '@icons/IconClose.svelte';
 
 	import NotificationLoading from './NotificationLoading.svelte';
 

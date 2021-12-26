@@ -5,7 +5,7 @@
 
 	import Button from '@components/Button.svelte';
 	import TextField from '@components/TextField.svelte';
-	import IconUpload from '@components/icons/IconUpload.svelte';
+	import IconUpload from '@icons/IconUpload.svelte';
 
 	import { upload } from '@utils/uploader';
 

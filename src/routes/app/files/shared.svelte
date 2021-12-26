@@ -8,7 +8,7 @@
 
 	import FileIcon from '@components/Files/FileIcon.svelte';
 	import User from '@components/Users/User.svelte';
-	import IconStarFill from '@components/icons/IconStarFill.svelte';
+	import IconStarFill from '@icons/IconStarFill.svelte';
 
 	const rows = {
 		fileName: $LL.APP_TABLE_FILE_NAME(),

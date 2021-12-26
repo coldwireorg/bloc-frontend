@@ -4,7 +4,7 @@
 	import { parseFile } from '@utils/fileTypes';
 
 	import FileIcon from '../Files/FileIcon.svelte';
-	import IconDropMenu from '../icons/IconDropMenu.svelte';
+	import IconDropMenu from '@icons/IconDropMenu.svelte';
 	import UserList from '@components/Users/UserList.svelte';
 
 	export let fileName;

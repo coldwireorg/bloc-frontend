@@ -1,6 +1,6 @@
 <script>
 	import { contextmenu } from '@stores/contextmenu';
-	import IconDropMenu from '../icons/IconDropMenu.svelte';
+	import IconDropMenu from '@icons/IconDropMenu.svelte';
 
 	export let rows;
 	export let data;

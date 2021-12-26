@@ -9,7 +9,7 @@ const fileTypes = [
 	{
 		exts: ['.iso', '.img'],
 		color: 'green',
-		icon: 'text'
+		icon: 'file'
 	},
 	{
 		exts: ['.pdf', '.pdfx'],
@@ -22,14 +22,24 @@ const fileTypes = [
 		icon: 'table'
 	},
 	{
-		exts: ['.jpg', '.png', '.jpeg'],
+		exts: ['.jpg', '.png', '.jpeg', '.svg'],
 		color: 'violet',
 		icon: 'image'
 	},
 	{
 		exts: ['.zip', '.bz2', '.tar.gz', '.tar.xz', '.tar'],
 		color: 'yellow',
-		icon: 'image'
+		icon: 'file'
+	},
+	{
+		exts: ['.mp3', '.m4a'],
+		color: 'blue',
+		icon: 'music'
+	},
+  {
+		exts: ['.mp4', '.avi'],
+		color: 'orange',
+		icon: 'video'
 	}
 ];
 
