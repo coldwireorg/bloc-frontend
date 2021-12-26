@@ -10,7 +10,7 @@
 	import MenuSeparator from '@components/Menus/MenuSeparator.svelte';
 	import TextField from '@components/TextField.svelte';
 
-	import IconPeoples from '@icons/IconPeoples.svelte';
+	//import IconPeoples from '@icons/IconPeoples.svelte';
 	import IconStar from '@icons/IconStar.svelte';
 	import IconUnstar from '@icons/IconUnstar.svelte';
 	import IconDownload from '@icons/IconDownload.svelte';
@@ -84,7 +84,7 @@
     <IconMove color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Move to
   </MenuOption> -->
 	<MenuSeparator />
-	<MenuOption
+  <!-- <MenuOption
 		on:click={() => {
 			shareSub = !shareSub;
 			moveToSub = false;
@@ -94,7 +94,7 @@
 		{#if $contextmenu.file.sharedTo.length > 0}
 			<div class="active blue" />
 		{/if}
-	</MenuOption>
+	</MenuOption> -->
 	<MenuOption
 		on:click={() => download()}
 	>
