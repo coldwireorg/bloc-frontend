@@ -74,7 +74,7 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 <div class="auth-form">
 	<form class="form" on:submit|preventDefault={() => auth()}>
     <div class="top">
-      <IconLock size="16px" color="var(--primary-green)" /> Make sure yout connection is safe
+      <IconLock size="16px" color="var(--primary-green)" /> Make sure your connection is safe
     </div>
     <h1>{action.charAt(0).toUpperCase() + action.slice(1)}</h1>
 		{#if err}

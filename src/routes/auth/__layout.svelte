@@ -3,7 +3,7 @@
 <div class="auth">
   <i class="logo"><img src="/img/logo.svg" alt="BLOC" /></i>
 	<slot />
-  <a class="artist" href="https://www.artstation.com/attemme" target="_blank">Artwork by Rostyslav Zagornov</a>
+  <a class="artist" href="https://unsplash.com/photos/XM1YUUVXj64" target="_blank">Artwork by @pawel_czerwinski - unsplash.com</a>
 </div>
 
 
