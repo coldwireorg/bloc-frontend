@@ -53,25 +53,21 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 			password: password
 		});
 
-		if (json.code === 'ERROR_AUTH_EXIST') {
-			err = 'User already exist';
-			return;
-		}
 
-		if (json.code === 'ERROR_AUTH_PASSWORD') {
-			err = 'Wrong password';
-			return;
-		}
-
-		if (json.code === 'SUCCESS') {
-			$session.user = {
-				username: json.data.username
-			};
-
-			goto('/app/files/');
-		}
-
-		err = 'unknown error...';
+    switch(json.code) {
+      case 'SUCCESS':
+        $session.user = { username: json.data.username };
+        goto('/app/files/');
+        break;
+      case 'ERROR_AUTH_EXIST':
+        err = 'User already exist';
+        break;
+      case 'ERROR_AUTH_PASSWORD':
+        err = 'Wrong password';
+        break;
+      default:
+        err = 'unknown error...';
+    }
 	}
 </script>
 
@@ -92,7 +88,7 @@ import IconLock from '@lib/Icons/IconLock.svelte';
 			<PasswordField bind:value={repassword} placeholder={$LL.AUTH_FIELD_PASSWORD()} />
 		{/if}
 		<div class="submit">
-			<input class="btn" type="submit" on:click={() => auth(username, password)} on:submit={() => auth(username, password)} value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}>
+			<input class="btn" type="submit" on:click={() => auth(username, password)} value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}>
 			<p>
 				{action == 'login' ? $LL.AUTH_TEXT_NO_ACCOUNT() : $LL.AUTH_TEXT_ALREADY_HAVE_ACCOUNT()}
 				<a sveltekit:prefetch href={action == 'login' ? '/auth/register' : '/auth/login'}

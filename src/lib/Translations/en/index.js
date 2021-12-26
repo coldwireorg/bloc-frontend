@@ -6,13 +6,13 @@
 
 /** @type { BaseTranslation } */
 const en = {
-	APP_FIELD_SEARCH_BAR: 'search...',
-	APP_BUTTON_UPLOAD: 'upload',
+	APP_FIELD_SEARCH_BAR: 'Search...',
+	APP_BUTTON_UPLOAD: 'Upload',
 
-	AUTH_FIELD_USERNAME: 'username',
-	AUTH_FIELD_PASSWORD: 'password',
-	AUTH_BUTTON_LOGIN: 'login',
-	AUTH_BUTTON_REGISTER: 'register',
+	AUTH_FIELD_USERNAME: 'Username',
+	AUTH_FIELD_PASSWORD: 'Password',
+	AUTH_BUTTON_LOGIN: 'Login',
+	AUTH_BUTTON_REGISTER: 'Register',
 	AUTH_TEXT_NO_ACCOUNT: "You don't have an account yet?",
 	AUTH_TEXT_ALREADY_HAVE_ACCOUNT: 'Already have an account?',
 	AUTH_TEXT_CREATE_ACCOUNT: 'Create one',
