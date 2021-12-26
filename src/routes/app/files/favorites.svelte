@@ -2,15 +2,14 @@
 	import LL from '@lib/Translations/i18n-svelte';
 	import { bitsToSize, dateTodate } from '@utils/converters';
 
-  import { session } from '$app/stores';
-	import { contextmenu } from '@stores/contextmenu';
 	import { favorites } from '@stores/files';
 
 	import FileTable from '@components/Files/FileTable.svelte';
 
 	import FileIcon from '@components/Files/FileIcon.svelte';
-	import UserList from '@components/Users/UserList.svelte';
 	import IconStarFill from '@components/icons/IconStarFill.svelte';
+
+  import NoFiles from '@templates/NoFiles.svelte';
 
 	const rows = {
 		fileName: $LL.APP_TABLE_FILE_NAME(),

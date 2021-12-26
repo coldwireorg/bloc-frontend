@@ -2,7 +2,6 @@
 	import LL from '@lib/Translations/i18n-svelte';
 	import { bitsToSize, dateTodate } from '@utils/converters';
 
-  import { session } from '$app/stores';
 	import { contextmenu } from '@stores/contextmenu';
 	import { files as fileStore, favorites } from '@stores/files';
 
@@ -10,8 +9,9 @@
 	import FavoriteCard from '@components/Favorites/FavoriteCard.svelte';
 
 	import FileIcon from '@components/Files/FileIcon.svelte';
-	import UserList from '@components/Users/UserList.svelte';
 	import IconStarFill from '@components/icons/IconStarFill.svelte';
+
+  import NoFiles from '@templates/NoFiles.svelte';
 
 	const rows = {
 		fileName: $LL.APP_TABLE_FILE_NAME(),
@@ -60,6 +60,8 @@
 			{/if}
 		</FileTable>
 	</section>
+{:else}
+  <NoFiles />
 {/if}
 
 <style>
