@@ -5,8 +5,10 @@
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
 	import { quota } from '@stores/quota';
+	import { files } from '@stores/files';
 
 	import { bitsToSize } from '@utils/converters';
+  import { request } from '@lib/Api';
 
 	import IconFolder from '@icons/IconFolder.svelte';
 	import IconStar from '@icons/IconStar.svelte';
@@ -22,7 +24,16 @@
 	let windowWidth;
 	let navToogle = false;
 	function logout() {
-		goto('/auth/logout');
+    request('logout')
+    .then(() => {
+      quota.set({
+        max: 0,
+        total: 0
+      })
+
+      files.set([])
+      goto('/auth/login');
+    })
 	}
 </script>
 

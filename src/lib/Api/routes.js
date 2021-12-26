@@ -12,8 +12,8 @@ export const routes = {
 	},
 	logout: {
 		route: 'user/auth/logout',
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' }
+		method: 'GET',
+		headers: {}
 	},
 	getQuota: {
 		route: 'user/quota',
