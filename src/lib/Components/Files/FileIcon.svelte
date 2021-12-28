@@ -14,6 +14,13 @@
 	}
 </script>
 
+{#if fileName === 'folder'}
+<i class="folder">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24px" height="24px" on:click>
+    <path fill="#F0F6FC" fill-opacity="0.25" d="M6.66671 2.66663H2.66671C1.92671 2.66663 1.33337 3.25996 1.33337 3.99996V12C1.33337 12.3536 1.47385 12.6927 1.7239 12.9428C1.97395 13.1928 2.31309 13.3333 2.66671 13.3333H13.3334C13.687 13.3333 14.0261 13.1928 14.2762 12.9428C14.5262 12.6927 14.6667 12.3536 14.6667 12V5.33329C14.6667 4.59329 14.0667 3.99996 13.3334 3.99996H8.00004L6.66671 2.66663Z" />
+  </svg>
+</i>
+{:else}
 <i class="icon" style="background-color: var(--secondary-{color});">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={size} height={size} on:click>
 		{#if icon == 'file'}
@@ -71,6 +78,7 @@
 		{/if}
 	</svg>
 </i>
+{/if}
 
 <style>
 	.icon {
@@ -84,4 +92,16 @@
 
 		box-sizing: border-box;
 	}
+
+  .folder {
+    display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: 24px;
+		height: 24px;
+		border-radius: 4px;
+
+		box-sizing: border-box;
+  }
 </style>

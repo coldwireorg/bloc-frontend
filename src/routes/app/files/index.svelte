@@ -3,7 +3,8 @@
 	import { bitsToSize, dateTodate } from '@utils/converters';
 
 	import { contextmenu } from '@stores/contextmenu';
-	import { files as fileStore, favorites } from '@stores/files';
+	import { files, favorites } from '@stores/files';
+	import { folders } from '@stores/folders';
 
 	import FileTable from '@components/Files/FileTable.svelte';
 	import FavoriteCard from '@components/Favorites/FavoriteCard.svelte';
@@ -37,10 +38,10 @@
 	</section>
 {/if}
 
-{#if $fileStore.length > 0}
+{#if $files.length > 0}
 	<section>
 		<h2>Files</h2>
-		<FileTable {rows} data={$fileStore} let:value let:row let:favorite>
+		<FileTable {rows} folders={$folders} data={$files} let:value let:row let:favorite>
 			{#if row === 'fileName'}
 				<FileIcon fileName={value} />
 				{value}
