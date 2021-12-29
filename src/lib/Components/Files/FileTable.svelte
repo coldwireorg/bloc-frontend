@@ -1,14 +1,14 @@
 <script>
-  import { path } from '@stores/path';
+	import { path } from '@stores/path';
 	import { contextmenu } from '@stores/contextmenu';
 
 	import IconDropMenu from '@icons/IconDropMenu.svelte';
 	import FileIcon from '@components/Files/FileIcon.svelte';
-  import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
 	export let rows;
 	export let data;
-  export let folders = [];
+	export let folders = [];
 </script>
 
 <div class="table-scroll">
@@ -22,22 +22,30 @@
 		</thead>
 		<br />
 		<tbody>
-      {#each folders as f}
-        <tr style="cursor: pointer;" on:click={() => {let p = f['path']  + (f['name'] == '..' ? '':f['name']); path.set(p); goto(`/app/files?path=${p}`)}}>
-          <td>
-            <div class="inner">
-              <FileIcon fileName="folder" /> {f['name']}
-            </div>
-          </td>
-          <td>—</td>
-          <td>—</td>
-          <td on:click={(e) => {}}>
-            <div class="inner">
-              <IconDropMenu size="16px" />
-            </div>
-          </td>
-        </tr>
-      {/each}
+			{#each folders as f}
+				<tr
+					style="cursor: pointer;"
+					on:click={() => {
+						let p = f['path'] + (f['name'] == '..' ? '' : f['name']);
+						path.set(p);
+						goto(`/app/files?path=${p}`);
+					}}
+				>
+					<td>
+						<div class="inner">
+							<FileIcon fileName="folder" />
+							{f['name']}
+						</div>
+					</td>
+					<td>—</td>
+					<td>—</td>
+					<td on:click={(e) => {}}>
+						<div class="inner">
+							<IconDropMenu size="16px" />
+						</div>
+					</td>
+				</tr>
+			{/each}
 
 			{#each data as d}
 				<tr on:contextmenu|preventDefault={(e) => contextmenu.open(e, d)}>
