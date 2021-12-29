@@ -1,11 +1,29 @@
+<script context="module">
+  export async function load({ page }) {
+    let path = page.query.get('path')
+
+    if (!path) {
+      path = '/'
+    }
+
+		return {
+			props: {
+				queryPath: path
+			}
+		};
+	}
+</script>
+
 <script>
 	import { browser } from '$app/env';
 	import { request } from '@lib/Api';
 
 	import { files } from '@stores/files';
+  import { folders } from '@stores/folders';
 	import { notifications } from '@stores/notifications';
 	import { contextmenu } from '@stores/contextmenu';
 	import { quota as quotaStore } from '@stores/quota';
+  import { path } from '@stores/path';
 
 	import Navbar from '@templates/Navbar.svelte';
 	import TopBar from '@templates/Topbar.svelte';
@@ -13,24 +31,56 @@
 
 	import Notification from '@components/Notifications/Notification.svelte';
 
-	async function init() {
-		const filesList = await request('listFiles');
-		if (filesList.data.files) {
-			$files = filesList.data.files;
-		}
+  export let queryPath
+  $path = queryPath
 
-		const quota = await request('getQuota');
+	async function init() {
+		const filesList = await request('listFiles', {
+      query: `path=${$path}`
+    });
+    if (filesList.code = 'SUCCESS' && filesList.data && filesList.data.files) {
+			$files = filesList.data.files;
+    } else {
+      $files = []
+    }
+
+    const foldersList = await request('listFolders', {
+      query: `path=${$path}`
+    });
+
+		if (foldersList.code = 'SUCCESS' && foldersList.data && foldersList.data.folders) {
+			$folders = foldersList.data.folders;
+		} else {
+      $folders = [
+        {
+          name: '..',
+          path: '/'
+        }
+      ]
+    }
+	}
+
+  async function qta() {
+    const quota = await request('getQuota', {
+      query: undefined,
+      body: undefined
+    });
+
 		$quotaStore = {
 			max: quota.data.quota.max,
 			total: quota.data.quota.total
 		};
-	}
-
+  }
+  
 	if (browser) {
 		init();
+    qta()
 	}
 
-	notifications.subscribe((d) => console.log(d));
+  path.subscribe(p => {
+    console.log(p)
+    init()
+  })
 </script>
 
 <FilesMenu />

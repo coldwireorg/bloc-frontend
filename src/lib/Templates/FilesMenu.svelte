@@ -30,8 +30,10 @@
 
 	async function deleteFile() {
 		let res = await request('deleteFile', {
-			accessId: $contextmenu.file.accessId,
-			fileId: $contextmenu.file.fileId
+      body: {
+        accessId: $contextmenu.file.accessId,
+			  fileId: $contextmenu.file.fileId
+      }
 		});
 
 		if (res.code != 'SUCCESS') {
@@ -45,8 +47,10 @@
 
 	async function updateFavorite() {
 		let res = await request('updateFavorite', {
-			accessId: $contextmenu.file.accessId,
-			favorite: !$contextmenu.file.favorite
+      body: {
+        accessId: $contextmenu.file.accessId,
+			  favorite: !$contextmenu.file.favorite
+      }
 		});
 
 		if (res.code != 'SUCCESS') {

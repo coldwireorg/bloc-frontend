@@ -49,8 +49,10 @@
 		}
 
 		const json = await request(action, {
-			username: username,
-			password: password
+      body: {
+        username: username,
+			  password: password
+      }
 		});
 
 		switch (json.code) {

@@ -65,5 +65,18 @@ export const routes = {
 		route: 'file',
 		method: 'GET',
 		headers: {}
-	}
+	},
+
+  // Folders
+  createFolder: {
+
+  },
+  deleteFolder: {
+
+  },
+  listFolders: {
+    route: 'folder',
+		method: 'GET',
+		headers: {}
+  }
 };

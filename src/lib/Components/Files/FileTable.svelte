@@ -1,12 +1,14 @@
 <script>
+  import { path } from '@stores/path';
 	import { contextmenu } from '@stores/contextmenu';
 
 	import IconDropMenu from '@icons/IconDropMenu.svelte';
 	import FileIcon from '@components/Files/FileIcon.svelte';
+  import { goto } from '$app/navigation';
 
 	export let rows;
 	export let data;
-  export let folders;
+  export let folders = [];
 </script>
 
 <div class="table-scroll">
@@ -21,7 +23,7 @@
 		<br />
 		<tbody>
       {#each folders as f}
-        <tr style="cursor: pointer;">
+        <tr style="cursor: pointer;" on:click={() => {let p = f['path']  + (f['name'] == '..' ? '':f['name']); path.set(p); goto(`/app/files?path=${p}`)}}>
           <td>
             <div class="inner">
               <FileIcon fileName="folder" /> {f['name']}

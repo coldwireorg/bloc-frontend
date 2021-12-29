@@ -24,7 +24,7 @@
 					}
 				} else {
 					console.log($page.path);
-					if (!$page.path.startsWith('/files') || $page.path == '/files') {
+					if (!$page.path.startsWith('/files')) {
 						goto('/app/files');
 					}
 				}

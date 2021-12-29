@@ -38,7 +38,7 @@
 	</section>
 {/if}
 
-{#if $files.length > 0}
+{#if $files.length > 0 || $folders.length > 0}
 	<section>
 		<h2>Files</h2>
 		<FileTable {rows} folders={$folders} data={$files} let:value let:row let:favorite>

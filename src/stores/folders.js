@@ -1,12 +1,7 @@
 import { writable } from 'svelte/store';
 
 const createFoldersStore = () => {
-	const folders = writable([
-    {
-      name: "test",
-      path: "/test"
-    }
-  ]);
+	const folders = writable([]);
 	const { subscribe, set, update } = folders;
 
 	function add(folder) {
