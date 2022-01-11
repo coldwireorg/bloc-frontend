@@ -1,9 +1,10 @@
 <script>
 	import { upload } from '@utils/uploader';
+	import { path } from '@stores/path';
 
 	let file, fileinput;
-	const onFileSelected = (e) => {
-		upload(e.target.files[0]);
+	const onFileSelected = (e) => { 
+		upload(e.target.files[0], $path);
 	};
 </script>
 

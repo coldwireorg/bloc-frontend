@@ -92,7 +92,6 @@
 			<input
 				class="btn"
 				type="submit"
-				on:click={() => auth(username, password)}
 				value={action == 'login' ? $LL.AUTH_BUTTON_LOGIN() : $LL.AUTH_BUTTON_REGISTER()}
 			/>
 			<p>

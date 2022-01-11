@@ -3,9 +3,10 @@ import { loaders } from '@stores/loaders';
 import { notifications } from '@stores/notifications';
 import { quota } from '@stores/quota';
 
-export function upload(file) {
+export function upload(file, path) {
 	const fd = new FormData();
 	fd.append('file', file); // adding file to the request
+  fd.append('path', path);
 
 	// create notification
 	const loaderId = loaders.create(0, 0);

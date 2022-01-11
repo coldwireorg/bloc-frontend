@@ -8,10 +8,11 @@
 	import IconUpload from '@icons/IconUpload.svelte';
 
 	import { upload } from '@utils/uploader';
+	import { path } from '@stores/path';
 
 	let file, fileinput;
 	const onFileSelected = (e) => {
-		upload(e.target.files[0]);
+		upload(e.target.files[0], $path);
 	};
 </script>
 

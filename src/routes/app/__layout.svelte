@@ -73,14 +73,11 @@
 	}
 
 	if (browser) {
-		init();
 		qta();
+    path.subscribe((p) => {
+      init();
+    });
 	}
-
-	path.subscribe((p) => {
-		console.log(p);
-		init();
-	});
 </script>
 
 <FilesMenu />
