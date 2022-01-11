@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import { routes } from './routes';
 
 export async function request(route, req = {}) {
@@ -10,6 +11,11 @@ export async function request(route, req = {}) {
 			body: req.body ? JSON.stringify(req.body) : null
 		}
 	);
+
+  if (res.status === 403) {
+    goto("/auth/login")
+    return false
+  }
 
 	return res.json();
 }
