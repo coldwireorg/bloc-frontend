@@ -74,9 +74,9 @@
 
 	if (browser) {
 		qta();
-    path.subscribe((p) => {
-      init();
-    });
+		path.subscribe((p) => {
+			init();
+		});
 	}
 </script>
 

@@ -6,7 +6,7 @@ import { quota } from '@stores/quota';
 export function upload(file, path) {
 	const fd = new FormData();
 	fd.append('file', file); // adding file to the request
-  fd.append('path', path);
+	fd.append('path', path);
 
 	// create notification
 	const loaderId = loaders.create(0, 0);
