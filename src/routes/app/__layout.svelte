@@ -28,6 +28,7 @@
 	import Navbar from '@templates/Navbar.svelte';
 	import TopBar from '@templates/Topbar.svelte';
 	import FilesMenu from '@templates/FilesMenu.svelte';
+  import NewMenu from '@lib/Templates/NewMenu.svelte';
 
 	import Notification from '@components/Notifications/Notification.svelte';
 
@@ -51,12 +52,7 @@
 		if ((foldersList.code = 'SUCCESS' && foldersList.data && foldersList.data.folders)) {
 			$folders = foldersList.data.folders;
 		} else {
-			$folders = [
-				{
-					name: '..',
-					path: '/'
-				}
-			];
+			$folders = [];
 		}
 	}
 
@@ -77,10 +73,23 @@
 		path.subscribe((p) => {
 			init();
 		});
+
+    // For global context menus
+    document.addEventListener('contextmenu', function(e) {
+      console.log(e.target.offsetParent.nodeName)
+      if (e.target.offsetParent.nodeName != 'TABLE' && e.target.offsetParent.nodeName != 'TD' && e.target.offsetParent.nodeName != 'DIV') {
+        contextmenu.open(e, {}, 'newFolder')
+      } else {
+        contextmenu.close()
+      }
+      e.preventDefault();
+    }, false);
 	}
 </script>
 
+<NewMenu />
 <FilesMenu />
+
 <div class="notifications">
 	{#each $notifications as notification}
 		<Notification id={notification.id} data={notification.data} type={notification.type} />

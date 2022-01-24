@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 const createContextMenuStore = () => {
 	let value = {
-		open: false,
+		open: '',
 		file: {},
 		x: 0,
 		y: 0
@@ -10,10 +10,10 @@ const createContextMenuStore = () => {
 
 	const { subscribe, set } = writable(value);
 
-	function open(e, file) {
+	function open(e, file, id) {
 		setTimeout(() => {
 			set({
-				open: true,
+				open: id,
 				file: file,
 				x: e.clientX,
 				y: e.clientY

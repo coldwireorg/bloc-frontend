@@ -4,6 +4,8 @@
 
 	import { contextmenu } from '@stores/contextmenu';
 	import { files } from '@stores/files';
+	import { folders } from '@stores/folders';
+  import { path } from '@stores/path';
 
 	import Menu from '@components/Menus/Menu.svelte';
 	import MenuOption from '@components/Menus/MenuOption.svelte';
@@ -17,6 +19,8 @@
 	import IconDelete from '@icons/IconDelete.svelte';
 	import IconPerson from '@icons/IconPerson.svelte';
 	import IconFolderFill from '@icons/IconFolderFill.svelte';
+  import IconMove from '@lib/Icons/IconMove.svelte';
+
 
 	let shareSub = false;
 	let moveToSub = false;
@@ -62,51 +66,69 @@
 		contextmenu.close();
 	}
 
+  async function moveFile(path) {
+    console.log(path)
+
+    let res = await request('moveFile', {
+      body: {
+        accessId: $contextmenu.file.accessId,
+        path: path
+      }
+    });
+
+    if (res.code != 'SUCCESS') {
+      console.log('error')
+    } else {
+      files.rem($contextmenu.file.accessId)
+    }
+  }
+
 	function download() {
 		fileDownload($contextmenu.file.accessId, $contextmenu.file.fileName);
 		contextmenu.close();
 	}
 </script>
 
-<Menu open={$contextmenu.open} x={$contextmenu.x - 148} y={$contextmenu.y}>
-	<!--
-  {#if file.$contextmenu.file.accessState == 'PRIVATE'}
-    <MenuOption>
-      <IconRename color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Rename
+{#if $contextmenu.open == 'file'}
+  <Menu open={true} x={$contextmenu.x - 148} y={$contextmenu.y}>
+    <!--
+    {#if file.$contextmenu.file.accessState == 'PRIVATE'}
+      <MenuOption>
+        <IconRename color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Rename
+      </MenuOption>
+    {/if} -->
+    <MenuOption on:click={() => updateFavorite()}>
+      {#if $contextmenu.file.favorite}
+        <IconUnstar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Unstar
+      {:else}
+        <IconStar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Star
+      {/if}
     </MenuOption>
-  {/if} -->
-	<MenuOption on:click={() => updateFavorite()}>
-		{#if $contextmenu.file.favorite}
-			<IconUnstar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Unstar
-		{:else}
-			<IconStar color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Star
-		{/if}
-	</MenuOption>
-	<!-- <MenuOption on:click={() => {moveToSub = !moveToSub; shareSub = false}}>
-    <IconMove color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Move to
-  </MenuOption> -->
-	<MenuSeparator />
-	<!-- <MenuOption
-		on:click={() => {
-			shareSub = !shareSub;
-			moveToSub = false;
-		}}
-	>
-		<IconPeoples color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Share
-		{#if $contextmenu.file.sharedTo.length > 0}
-			<div class="active blue" />
-		{/if}
-	</MenuOption> -->
-	<MenuOption on:click={() => download()}>
-		<IconDownload color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Download
-	</MenuOption>
-	{#if $contextmenu.file.accessState == 'PRIVATE'}
-		<MenuOption on:click={() => deleteFile()}>
-			<IconDelete color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Delete
-		</MenuOption>
-	{/if}
-</Menu>
-
+    <MenuOption on:click={() => {moveToSub = !moveToSub; shareSub = false}}>
+      <IconMove color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Move to
+    </MenuOption>
+    <MenuSeparator />
+    <!-- <MenuOption
+      on:click={() => {
+        shareSub = !shareSub;
+        moveToSub = false;
+      }}
+    >
+      <IconPeoples color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Share
+      {#if $contextmenu.file.sharedTo.length > 0}
+        <div class="active blue" />
+      {/if}
+    </MenuOption> -->
+    <MenuOption on:click={() => download()}>
+      <IconDownload color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Download
+    </MenuOption>
+    {#if $contextmenu.file.accessState == 'PRIVATE'}
+      <MenuOption on:click={() => deleteFile()}>
+        <IconDelete color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Delete
+      </MenuOption>
+    {/if}
+  </Menu>
+{/if}
 <Menu open={shareSub} x={$contextmenu.x} y={$contextmenu.y} title="Share with">
 	<!-- <MenuOption>
     <IconPlanet color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Everyone
@@ -126,18 +148,19 @@
 </Menu>
 
 <Menu open={moveToSub} x={$contextmenu.x} y={$contextmenu.y} title="Move file to">
-	<MenuOption hover={false}>
+	<!-- <MenuOption hover={false}>
 		<TextField placeholder="search..." />
-	</MenuOption>
-	<MenuOption>
-		<IconFolderFill color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Folder one
-	</MenuOption>
-	<MenuOption>
-		<IconFolderFill color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Folder two
-	</MenuOption>
-	<MenuOption>
-		<IconFolderFill color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> Folder three
-	</MenuOption>
+	</MenuOption> -->
+  {#if $path != '/'}
+    <MenuOption on:click={() => moveFile('/')}>
+      <IconFolderFill color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> home
+    </MenuOption>
+  {/if}
+  {#each $folders as folder}
+    <MenuOption on:click={() => moveFile(folder.path + folder.name)}>
+      <IconFolderFill color="#F0F6FC40" opacity="0.75" width="16px" height="16px" /> {folder.name}
+    </MenuOption>
+  {/each}
 </Menu>
 
 <style>

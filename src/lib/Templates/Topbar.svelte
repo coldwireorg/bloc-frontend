@@ -8,7 +8,15 @@
 	import IconUpload from '@icons/IconUpload.svelte';
 
 	import { upload } from '@utils/uploader';
-	import { path } from '@stores/path';
+	import { path, pathView } from '@stores/path';
+
+  import { goto } from '$app/navigation';
+
+  function moveTo(p) {
+    console.log(p)
+    path.set(p)
+    goto(`/app/files?path=${p}`)
+  }
 
 	let file, fileinput;
 	const onFileSelected = (e) => {
@@ -19,7 +27,13 @@
 <div class="top-bar">
 	<div class="left">
 		{#if $page.path === '/app/files'}
-			<h1>{$LL.APP_NAV_LINK_FILES()}</h1>
+    <span on:click={() => moveTo('/')}>home</span>
+    {#each $pathView as p, i}
+      <span on:click={() => {
+        p = $pathView.slice(0, i+1).join('/');
+        moveTo('/'+p);
+      }}>{p}</span>
+    {/each}
 		{:else if $page.path === '/app/files/favorites'}
 			<h1>{$LL.APP_NAV_LINK_FAVORITES()}</h1>
 		{:else if $page.path === '/app/files/shared'}

@@ -26,7 +26,7 @@
 				<tr
 					style="cursor: pointer;"
 					on:click={() => {
-						let p = f['path'] + (f['name'] == '..' ? '' : f['name']);
+						let p = f['path'] + f['name'];
 						path.set(p);
 						goto(`/app/files?path=${p}`);
 					}}
@@ -48,7 +48,7 @@
 			{/each}
 
 			{#each data as d}
-				<tr on:contextmenu|preventDefault={(e) => contextmenu.open(e, d)}>
+				<tr on:contextmenu|preventDefault={(e) => contextmenu.open(e, d, 'file')}>
 					{#each Object.entries(rows) as r}
 						{#if Object.keys(d).includes(r[0])}
 							<td>
@@ -66,7 +66,7 @@
 							<td>—</td>
 						{/if}
 					{/each}
-					<td on:click={(e) => contextmenu.open(e, d)}>
+					<td on:click={(e) => contextmenu.open(e, d, 'file')}>
 						<div class="inner">
 							<IconDropMenu size="16px" />
 						</div>

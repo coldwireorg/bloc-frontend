@@ -42,6 +42,11 @@ export const routes = {
 		method: 'GET',
 		headers: {}
 	},
+  moveFile: {
+    route: 'file/move',
+    method: 'POST',
+		headers: { 'Content-Type': 'application/json' }
+  },
 
 	// Favorites
 	updateFavorite: {
